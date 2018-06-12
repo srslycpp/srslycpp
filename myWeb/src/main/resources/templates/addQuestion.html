@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head  th:replace=" template :: header"></head>
+
+<body onload="odliczanie();">
+
+<div id="container">
+
+   <div th:replace="template :: up"></div>
+
+      <form th:action="@{addQuestion}" th:object="${addQuestion}" method="post">
+         <!--<input th:type="number" th:field="*{id}" placeholder="Enter here Question's id"><br>-->
+
+         <!--<input type="hidden" th:value="${question.id}" th:field="*{id}"/>-->
+         <textarea placeholder="Enter Your Question here" rows = "5" cols = "60" th:field = "*{question}" >... </textarea><br>
+
+         <input th:type="text" th:field="*{odpA}" placeholder="Enter here Answer A">
+         <input th:type="text" th:field="*{odpB}" placeholder="Enter here Answer B"><br>
+         <input th:type="text" th:field="*{odpC}" placeholder="Enter here Answer C">
+         <input th:type="text" th:field="*{odpD}" placeholder="Enter here Answer D"><br>
+
+         <select th:field="*{goodA}"  >
+            <option value="" disabled selected >Select Good Answer</option>
+            <option value="programowanie">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+         </select><br>
+
+         <select th:field="*{category}" >
+            <option value="programowanie">Programowanie</option>
+            <option value="urzadzenia techniki komp">Urzadzenia techniki komp</option>
+            <option value="systemy operacyjne i sieci">Systemy operacyjne i sieci</option>
+            <option value="multimedia i grafika">Multimedia i grafika</option>
+         <option value="ogólne">Ogólne</option>
+         </select><br>
+
+         <select th:field="*{year}" >
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+         </select><br>
+         <input type="submit" value="Submit">
+      </form>
+
+
+   <div th:replace="template :: all"></div>
+   <div th:replace="template :: one"></div>
+
+   <div th:replace="template :: links"></div>
+   <div th:replace="template :: footer"></div>
+</div>
+</body>
+
+</html>

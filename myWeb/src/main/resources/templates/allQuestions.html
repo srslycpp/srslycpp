@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head  th:replace=" template :: header"></head>
+
+<body>
+
+<div id="container">
+
+    <div th:replace="template :: up"></div>
+
+    <table class="blueTable" th:each="question : ${questions}">
+         <thead>
+         <form action="#" th:action="@{/projects/quiz/editQuestion}"  method="get">
+             <input value="Edit" type="submit" />
+             <!--<input value="Delete" name="delete" type="submit" />-->
+             <input type="radio" name="id" th:value="${question.id}" />
+         <td colspan="2" th:utext="'Q: ' +${question.question}"></td>
+         </form>
+         </thead>
+         <tbody>
+         <tr>
+            <td th:utext=" 'odpA: ' +${question.odpA} "></td>
+            <td th:utext=" 'odpB: ' +${question.odpB} "></td>
+         </tr>
+         <tr>
+            <td th:utext=" 'odpC: ' +${question.odpC} "></td>
+            <td th:utext=" 'odpD: ' +${question.odpD} "></td>
+         </tr>
+         </tbody>
+         </tr>
+         </tfoot>
+      </table>
+   <div class="links">
+      <a href="#">&laquo;</a>
+      <a class="active" href="#">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">&raquo;</a>
+   </div>
+    <div th:replace="template :: delete"></div>
+    <div th:replace="template :: add"></div>
+    <div th:replace="template :: all"></div>
+    <div th:replace="template :: one"></div>
+    <div th:replace="template :: edit"></div>
+
+    <div th:replace="template :: links"></div>
+    <div th:replace="template :: footer"></div>
+</div>
+</body>
+
+</html>

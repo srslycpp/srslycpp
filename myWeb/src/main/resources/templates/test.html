@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+   <title>Srslycpp.pl</title>
+
+   <meta name="description" content="Stworzę dla Ciebie wyjątkową stronę www! Zatrudnij programistę webowego: PHP, JavaScript, HTML, CSS, MySQL, WordPress, Joomla, Drupal." />
+   <meta name="keywords" content="zamów, stronę, tworzenie, www, programista, portfolio, php, javascript, html, css, WordPress, Joomla, Drupal" />
+   <link href="../static/css/stylee.css" rel="stylesheet"
+         th:href="@{/css/stylee.css}"/>
+   <link href="../static/css/fontello.css" rel="stylesheet"
+         th:href="@{/css/fontello.css}"/>
+   <link href="http://fonts.googleapis.com/css?family=Lato|Josefin+Sans&subset=latin,latin-ext" rel="stylesheet"
+         th:href="@{http://fonts.googleapis.com/css?family=Lato|Josefin+Sans&subset=latin,latin-ext}"/>
+   <script src="../static/js/timer.js"
+           th:src="@{/js/timer.js}"></script>
+
+</head>
+
+<body onload="odliczanie();">
+
+<div id="container">
+
+   <div class="rectangle">
+      <div id="logo"><h1>Srslycpp.pl</h1></div>
+      <div id="zegar"></div>
+      <div style="clear: both;"></div>
+   </div>
+
+   <div class="square">
+      <div class="tile1">
+         <i class="icon-user"></i><br />...</a>
+      </div>
+
+      <div class="tile1">
+         <i class="icon-laptop"></i><br />...
+      </div>
+      </a>
+      <div style="clear:both;"></div>
+
+      <div class="tile2">
+         <i class="icon-graduation-cap"></i><br />..</a>
+      </div>
+      <div class="tile3">
+         <i class="icon-dropbox"></i><br />...</a>
+      </div>
+      <div style="clear:both;"></div>
+
+         <div class="tile4">
+            <a href="/projects">
+            <i class="icon-graduation-cap" ></i><br />My Projects
+            </a>
+         </div>
+   </div>
+   <div class="square">
+      <div class="tile5">
+         Witaj <br /><br /></div>
+      <div class="git">
+         <a href="https://github.com/srslycpp" target="_blank" class="sociallink"><i class="icon-github-circled-alt2"></i></a>
+      </div>
+      <div class="yt">
+         <a href="https://www.youtube.com" target="_blank" class="sociallink"><i class="icon-youtube"></i></a>
+      </div>
+      <div class="drop">
+         <a href="https://www.dropbox.com/pl/" target="_blank" class="sociallink"><i class="icon-dropbox"></i></a>
+      </div>
+      <div class="skype">
+         <a href="https://www.skype.com" target="_blank" class="sociallink"><i class="icon-skype"></i></a>
+      </div>
+   </div>
+   <div style="clear: both;"></div>
+
+
+   <div class="rectangle">2018 &copy; Srslycpp.pl <i class="icon-mail-alt"></i> me@srslycpp.pl</div>
+
+</div>
+
+</body>
+</html>

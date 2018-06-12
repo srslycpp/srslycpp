@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+
+<head  th:replace=" template :: header"></head>
+
+<body onload="odliczanie();">
+
+<div id="container">
+
+   <div th:replace="template :: up"></div>
+
+
+   <div class="square">
+      <div class="tile1">
+         <i class="icon-user"></i><br />...</a>
+      </div>
+
+      <div class="tile1">
+         <i class="icon-laptop"></i><br />...
+      </div>
+      </a>
+      <div style="clear:both;"></div>
+
+      <div class="tile2">
+         <i class="icon-graduation-cap"></i><br />..</a>
+      </div>
+      <div class="tile3">
+         <a href="/...">
+         <i class="icon-dropbox"></i><br />...</a>
+      </div>
+      <div style="clear:both;"></div>
+
+         <div class="tile4">
+            <a href="/projects">
+            <i class="icon-emo-coffee" ></i><br />My Projects
+            </a>
+         </div>
+   </div>
+   <div class="square">
+      <div class="tile5">
+         <ul>
+            <li><a href="https://docs.spring.io/spring/docs/3.1.x/spring-framework-reference/htmlsingle/spring-framework-reference.html#spring-introduction">
+               Https://docs.spring.io
+            </a></li>
+            <li><a href="https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html">
+               Https://thymeleaf.org
+            </a></li>
+         </ul>
+      </div>
+
+      <div th:replace="template :: links"></div>
+      <div th:replace="template :: footer"></div>
+</div>
+</div>
+</body>
+</html>

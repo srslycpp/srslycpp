@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head  th:replace=" template :: header"></head>
+
+<body onload="odliczanie();">
+
+<div id="container">
+
+   <div th:replace="template :: up"></div>
+
+   <table class="blueTable">
+         <thead>
+         <tr>
+            <td  colspan="2" th:utext=" ${question}"></td>
+
+         </tr>
+         </thead>
+         <tbody>
+         <tr>
+            <td th:utext=" 'odpA: ' +${odpA} "></td>
+            <td th:utext=" 'odpB: ' +${odpB} "></td>
+         </tr>
+         <tr>
+            <td th:utext=" 'odpC: ' +${odpC} "></td>
+            <td th:text=" 'odpD: ' +${odpD} "></td>
+         </tr>
+         <tr>
+            <form th:action="@{allQuestion}" th:object="${question}" method="post">
+               <td  colspan="2" th:utext="'DO YOU REALLY WANT TO DELETE THIS QUESTION: id:' +${question.id}"></td>
+                  <input type="submit" value="DELETE" name="delete">
+            </form>
+         </tr>
+         </tbody>
+      </table>
+
+    <div th:replace="template :: delete"></div>
+    <div th:replace="template :: add"></div>
+    <div th:replace="template :: all"></div>
+    <div th:replace="template :: one"></div>
+    <div th:replace="template :: edit"></div>
+
+   <div th:replace="template :: links"></div>
+   <div th:replace="template :: footer"></div>
+</div>
+
+</body>
+</html>

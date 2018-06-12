@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+
+<head  th:replace=" template :: header"></head>
+
+<body onload="odliczanie();">
+
+<div id="container">
+
+   <div th:replace="template :: up"></div>
+
+   <div class="square">
+      <a href="/projects/quiz/oneQuestion">
+      <div class="tile1">
+         <i class="icon-laptop" ></i><br />Quiz
+      </div>
+      </a>
+      <div class="tile1">
+         <i class="icon-laptop"></i><br />...2
+      </div>
+
+      <div style="clear:both;"></div>
+
+      <div class="tile1">
+         <i class="icon-laptop"></i><br />...3
+      </div>
+      <div class="tile1">
+         <i class="icon-laptop"></i><br />...4
+      </div>
+
+      <div style="clear:both;"></div>
+   </div>
+   <div class="square">
+      <a href="/projects/quiz/oneQuestion">
+         <div class="tile1">
+            <i class="icon-laptop" ></i><br />Quiz
+         </div>
+      </a>
+      <div class="tile1">
+         <i class="icon-laptop"></i><br />...2
+      </div>
+
+      <div style="clear:both;"></div>
+
+      <div class="tile1">
+         <i class="icon-laptop"></i><br />...3
+      </div>
+      <div class="tile1">
+         <i class="icon-laptop"></i><br />...4
+      </div>
+   </div>
+
+   <div th:replace="template :: links"></div>
+   <div th:replace="template :: footer"></div>
+</div>
+
+</body>
+</html>

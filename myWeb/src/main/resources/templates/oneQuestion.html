@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+
+<head  th:replace=" template :: header"></head>
+
+<body onload="odliczanie();">
+
+<div id="container">
+
+   <div th:replace="template :: up"></div>
+
+      <table class="blueTable">
+         <thead>
+         <tr>
+            <form th:action="@{editQuestion}" th:object="${question}" method="post">
+            <td input type="radio" value="${question.id}" colspan="2" th:utext=" ${question}"></td>
+            </form>
+         </tr>
+         </thead>
+         <tbody>
+         <tr>
+            <td th:utext=" 'odpA: ' +${odpA} "></td>
+            <td th:utext=" 'odpB: ' +${odpB} "></td>
+         </tr>
+         <tr>
+            <td th:utext=" 'odpC: ' +${odpC} "></td>
+            <td th:text=" 'odpD: ' +${odpD} "></td>
+         </tr>
+         </tbody>
+      </table>
+   <div th:replace="template :: delete"></div>
+   <div th:replace="template :: add"></div>
+   <div th:replace="template :: all"></div>
+   <div th:replace="template :: one"></div>
+   <div th:replace="template :: edit"></div>
+
+   <div th:replace="template :: links"></div>
+   <div th:replace="template :: footer"></div>
+</div>
+
+</body>
+</html>
