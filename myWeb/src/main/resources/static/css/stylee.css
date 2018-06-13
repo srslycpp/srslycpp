@@ -214,8 +214,9 @@ table.blueTable thead tr {
   border-top: 2px solid #444444;
   text-align: right;
 }
-.links a{
-}
+.a{
+
+  text:decoration: none;
   display: inline-block;
   background: #1C6EA4;
   color: #FFFFFF;

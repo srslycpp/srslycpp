@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.srslycpp.myWeb.Entity.Questions;
 import pl.srslycpp.myWeb.Service.QuestionService;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class QuizController {
 
@@ -90,7 +88,7 @@ public class QuizController {
 	@PostMapping("/projects/quiz/addQuestion")
 	public String addingNewQuestion(@ModelAttribute("addQuestion") Questions addQuestion){
 		System.out.println(addQuestion.getCategory()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		System.out.println(addQuestion.getGoodA()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(addQuestion.getOdpO()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		System.out.println(addQuestion.getOdpA()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		System.out.println("addQuestion.postMapping <---------------");
 		System.out.println("postMapping <---------------");
@@ -98,76 +96,38 @@ public class QuizController {
 		return "addQuestion";
 	}
 
-////in progress
-//@GetMapping("/projects/quiz/editQuestion")
-//public String alllQuestions(@ModelAttribute("question") Questions editQuestion,
-//							Model model, HttpServletRequest request){
-//	Long id = Long.parseLong(request.getParameter("id"));
-//	//String string = request.getParameter("id");
-//	System.out.println("<<<<<<<<<<<"+ id);
-//	System.out.println("GetMapping");
-//	model.addAttribute("id", editQuestion.getId());
-//	//System.out.println("???????????????????????????????"+id);
-//	//questionService.editQuestion(id);
-//	return "editQuestion";	}
-
-	@GetMapping(value = "/projects/quiz/editQuestion/{id}")
-	public String editQuestion (@ModelAttribute("questions") Questions editQuestions,
-								Model model, @PathVariable("id") Long id, HttpServletRequest request) {
-		questionService.getQuestion(id);
-		//Long id = Long.parseLong(request.getParameter("id"));
-//		String ids = request.getParameter("id");
-//		String question = request.getParameter("question");
-//		String odpA = request.getParameter("odpA");
-//		String odpB = request.getParameter("odpB");
-//		String odpC = request.getParameter("odpC");
-//		String odpD = request.getParameter("odpD");
-//		String goodA = request.getParameter("gooda");
-//		String category = request.getParameter("category");
-//		String year = request.getParameter("year");
-		System.out.println("<<<<<<<<<<<" + id);
-		System.out.println("111zz " + request.getParameter("question"));
-		System.out.println("!ADDSAxzz " + request.getParameter("questions"));
-		System.out.println("<<>>><><" + editQuestions.getQuestion());
-		System.out.println("<" + questionService.getQuestion(id).getQuestion());
-		System.out.println("<" + questionService.getQuestion(id).getOdpA());
-		System.out.println("<" + questionService.getQuestion(id).getOdpB());
-		System.out.println("PostMapping");
-		model.addAttribute("id", questionService.getQuestion(id).getId());
-		model.addAttribute("question", questionService.getQuestion(id).getQuestion());
-		model.addAttribute("odpA", questionService.getQuestion(id).getOdpA());
-		model.addAttribute("odpB", questionService.getQuestion(id).getOdpB());
-		model.addAttribute("odpC", questionService.getQuestion(id).getOdpC());
-		model.addAttribute("odpD", questionService.getQuestion(id).getOdpD());
-		model.addAttribute("goodA", questionService.getQuestion(id).getGoodA());
-		model.addAttribute("category", questionService.getQuestion(id).getCategory());
-		model.addAttribute("year", questionService.getQuestion(id).getYear());
-		return "editQuestion";
-	}
 //in progress
 	@GetMapping("/projects/quiz/editQuestion")
-	public String alllQuestions(@ModelAttribute("question") Questions editQuestion,
-								Model model, HttpServletRequest request){
-		Long id = Long.parseLong(request.getParameter("id"));
-		//String string = request.getParameter("id");
-		System.out.println("<<<<<<<<<<<"+ id);
-		model.addAttribute("id", editQuestion.getId());
-		//System.out.println("???????????????????????????????"+id);
-		//questionService.editQuestion(id);
-		return "editQuestion";	}
-	@PostMapping(value = "/projects/quiz/editQuestion")
-	public String editQuestion (@ModelAttribute("questions") Questions editQuestion,
-								Model model,
-								HttpServletRequest request){
-		//Long id = Long.parseLong(request.getParameter("id"));
-		String string = request.getParameter("id");
-		System.out.println("<<<<<<<<<<<"+ string);
-		model.addAttribute("id", editQuestion.getId());
-		//model.addAttribute("editQuestion",questionService.editQuestion(id));
+	public String editQuestion(@ModelAttribute("questions") Questions editQuestion,
+								Model model) {
+		model.addAttribute("question", questionService.getQuestion(editQuestion.getId()));
 		return "editQuestion";
 	}
+//----------->
+	@PostMapping(value = "/projects/quiz/editQuestion")
+	public String editQuestion (@ModelAttribute("question") Questions editedQuestion){
+			System.out.println("getId <<<<<<<<<<< "+ editedQuestion.getId());
+		System.out.println("getOdpO <<<<<<<<<<< "+ editedQuestion.getOdpO());
+		System.out.println("getYear <<<<<<<<<<< "+ editedQuestion.getYear());
+		System.out.println("question.getQuestion() <<<<<<<<<<< "+ editedQuestion.getQuestion());
+		System.out.println("getCategory() <<<<<<<<<<< "+ editedQuestion.getCategory());
+		questionService.edittQuestion(editedQuestion);
+		return "allQuestions";
+	}
+	//??????
+	@GetMapping(value = "/projects/quiz/edittQuestion")
+	public String edittQuestion (@ModelAttribute("question") Questions editedQuestion){
+		System.out.println("getId ?????/ "+ editedQuestion.getId());
+		System.out.println("getOdpO <<<<<<<<<<< "+ editedQuestion.getOdpO());
+		System.out.println("getYear <<<<<<<<<<< "+ editedQuestion.getYear());
+		System.out.println("question.getQuestion() <<<<<<<<<<< "+ editedQuestion.getQuestion());
+		System.out.println("getCategory() <<<<<<<<<<< "+ editedQuestion.getCategory());
+		questionService.edittQuestion(editedQuestion);
+		return "allQuestions";
+	}
+	///?????????
 	@PostMapping("/projects/quiz/editQuestion/editQuestion")
-	public String edittQuestion (@ModelAttribute("editQuestion")Questions editQuestion){
+	public String editttQuestion (@ModelAttribute("editQuestion")Questions editQuestion){
 		questionService.edittQuestion(editQuestion);
 		return "editQuestion";
 	}

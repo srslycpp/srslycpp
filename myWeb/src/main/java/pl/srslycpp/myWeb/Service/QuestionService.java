@@ -36,7 +36,7 @@ public class QuestionService {
 
     public boolean check(String ok, Long id) {
 
-        if (questionsRepository.findById(id).get().getGoodA().equals(ok)) {
+        if (questionsRepository.findById(id).get().getOdpO().equals(ok)) {
             return true;
         }
         return false;
@@ -51,6 +51,11 @@ public class QuestionService {
         return question;
     }
     public Questions edittQuestion (Questions editQuestions){
+        System.out.println("QuestionService getYear "+ editQuestions.getYear());
+        System.out.println("QuestionService getGoodA "+ editQuestions.getOdpO());
+        System.out.println("QuestionService getQuestion "+ editQuestions.getQuestion());
+        System.out.println("QuestionService getId "+ editQuestions.getId());
+        System.out.println("QuestionService getCategory "+ editQuestions.getCategory());
         Questions question = questionsRepository.save(editQuestions);
         return question;
     }

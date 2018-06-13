@@ -10,42 +10,32 @@
 
    <div th:replace="template :: up"></div>
 
-   <p th:text="${id}">. </p>
+   <!--<p th:text="${id}">. </p>-->
+   <!--<p th:text="${question}">. </p>-->
+   <!--<p th:text="${odpA}">. </p>-->
+   <p th:text="'ID: ' + ${question.id}"></p>
+   <p th:text="'Q: ' + ${question.question}"></p>
+   <p th:text="'Category: ' + ${question.category}"></p>
+   <form th:action="@{/projects/quiz/edittQuestion}" th:object="${question}" method="get">
 
-   <form th:action="@{/projects/quiz/allQuestions}" th:object="${questions}" method="post">
-      <!--<input th:type="number" th:field="*{id}" placeholder="Enter here Question's id"><br>-->
+      <textarea th:field = "*{question}" rows = "5" cols = "60" > <p th:text="${question.question}"></p></textarea><br>
 
-      <!--&lt;!&ndash;<input type="hidden" th:value="${question.id}" th:field="*{id}"/>&ndash;&gt;-->
-      <!--<p th:text="'question.id: ' +${questions.id}"><<<<<<<<<>>>>>>>>>></p>-->
-      <!--<p th:text="'id: ' +${id}">3erw</p>-->
-      <!--<p th:text="'question: ' +${question}">3erw</p>-->
-      <!--<p th:text="'questions.question: ' +${questions.question}">3erw</p>-->
-      <!--<p th:text="'odpA: ' +${odpA}">csa</p>-->
-      <!--<p th:text="'odpB: ' +${odpB}">csd</p>-->
-      <!--<p th:text="'odpC: ' +${odpC}">csf</p>-->
-      <!--<p th:text="'odpD: ' +${odpD}">csds</p>-->
-      <!--<p th:text="'goodA: ' +${goodA}">
-      cccasds</p>-->
-      <!--<p th:text="'questions.goodA: ' +${questions.goodA}">cacs</p>-->
+      <!--<input th:type="text" th:value = "${question}" rows = "5" cols = "60" >-->
 
+      <input th:type="text" th:value = "${question.odpA}" th:field = "*{odpA}"   maxlength="255" size="33">
+      <input th:type="text" th:value = "${question.odpB}" th:field = "*{odpB}" maxlength="255" size="33"><br>
+      <input th:type="text" th:value = "${question.odpC}" th:field = "*{odpC}" maxlength="255" size="33">
+      <input th:type="text" th:value = "${question.odpD}" th:field = "*{odpD}" maxlength="255" size="33"><br>
 
-
-      <textarea th:attr="value = ${question}" rows = "5" cols = "60" >... </textarea><br>
-
-      <input th:type="text" th:attr="value = ${odpA}">
-      <input th:type="text" th:attr="value = ${odpB}"><br>
-      <input th:type="text" th:attr="value = ${odpC}" >
-      <input th:type="text" th:attr="value = ${odpD}"><br>
-
-      <select th:attr="value = ${goodA}" >
+      <select th:field = "*{odpO}" >
          <option value="" disabled selected >Select Good Answer</option>
-         <option value="programowanie">A</option>
-         <option value="B">B</option>
-         <option value="C">C</option>
-         <option value="D">D</option>
+         <option value="a">a</option>
+         <option value="b">b</option>
+         <option value="c">c</option>
+         <option value="d">d</option>
       </select><br>
 
-      <select th:attr="value = ${category}" >
+      <select th:field = "*{category}" >
          <option value="programowanie">Programowanie</option>
          <option value="urzadzenia techniki komp">Urzadzenia techniki komp</option>
          <option value="systemy operacyjne i sieci">Systemy operacyjne i sieci</option>
@@ -53,7 +43,7 @@
          <option value="ogólne">Ogólne</option>
       </select><br>
 
-      <select th:attr="value = ${year}">
+      <select th:field = "*{year}">
          <option value="2000">2000</option>
          <option value="2001">2001</option>
          <option value="2002">2002</option>
@@ -67,7 +57,15 @@
          <option value="2010">2010</option>
          <option value="2011">2011</option>
          <option value="2012">2012</option>
+         <option value="2013">2013</option>
+         <option value="2014">2014</option>
+         <option value="2015">2015</option>
+         <option value="2016">2016</option>
+         <option value="2017">2017</option>
+         <option value="2018">2018</option>
+         <option value="2019">2019</option>
       </select><br>
+      <input type="hidden" th:field="*{id}">
       <input type="submit" value="Submit">
    </form>
 

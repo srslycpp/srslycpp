@@ -25,23 +25,22 @@ public class Questions {
 	private String odpC;
 	@Column(name = "odpd")
 	private String odpD;
-	@Column(name = "odpowiedz")
-	private String goodA;
+	@Column(name = "odpo")
+	private String odpO;
 	@Column(name = "kategoria")
 	private String category;
-	@Column(name = "rok")
-	private int year;
+	@Column(name = "year")
+	private String year;
 
 	public Questions() {
-		this.goodA = "X";
 	} // Until i will find the cause; every time i get null /addQuestion
 
-	public Questions(Long id, String question, String goodA, String odpA, String odpB, String odpC, String odpD,
-					 String category, int year) {
+	public Questions(Long id, String question, String odpO, String odpA, String odpB, String odpC, String odpD,
+					 String category, String year) {
 		super();
 		this.id = id;
 		this.question = question;
-		this.goodA = goodA;
+		this.odpO = odpO;
 		this.odpA = odpA;
 		this.odpB = odpB;
 		this.odpC = odpC;
@@ -67,12 +66,12 @@ public class Questions {
 		this.question = question;
 	}
 
-	public String getGoodA() {
-		return goodA;
+	public String getOdpO() {
+		return odpO;
 	}
 
-	public void setGoodA(String goodA) {
-		goodA = goodA;
+	public void setOdpO(String odpO) {
+		this.odpO = odpO;
 	}
 
 	public String getOdpA() {
@@ -111,15 +110,15 @@ public class Questions {
 		return category;
 	}
 
-	public void setcategory(String category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setDate(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
