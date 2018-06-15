@@ -16,7 +16,7 @@
    <p th:text="'ID: ' + ${question.id}"></p>
    <p th:text="'Q: ' + ${question.question}"></p>
    <p th:text="'Category: ' + ${question.category}"></p>
-   <form th:action="@{/projects/quiz/edittQuestion}" th:object="${question}" method="get">
+      <form th:action="@{/projects/quiz/editQuestion}" th:object="${question}" method="post">
 
       <textarea th:field = "*{question}" rows = "5" cols = "60" > <p th:text="${question.question}"></p></textarea><br>
 
@@ -39,8 +39,10 @@
          <option value="programowanie">Programowanie</option>
          <option value="urzadzenia techniki komp">Urzadzenia techniki komp</option>
          <option value="systemy operacyjne i sieci">Systemy operacyjne i sieci</option>
+         <option value="oprogramowanie biurowe">Oprogramowanie biurowe</option>
          <option value="multimedia i grafika">Multimedia i grafika</option>
          <option value="ogólne">Ogólne</option>
+
       </select><br>
 
       <select th:field = "*{year}">
@@ -66,7 +68,7 @@
          <option value="2019">2019</option>
       </select><br>
       <input type="hidden" th:field="*{id}">
-      <input type="submit" value="Submit">
+      <input type="submit" value="Save">
    </form>
 
    <div th:replace="template :: all"></div>

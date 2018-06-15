@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.srslycpp.myWeb.Entity.Questions;
 import pl.srslycpp.myWeb.Service.QuestionService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class QuizController {
 
@@ -23,9 +25,6 @@ public class QuizController {
 
 	private long random;
 	//public long random = new RandomDataGenerator().nextLong(1L, 10L);
-
-
-
 	Questions questions = new Questions();
 
 	public static long random() {
@@ -96,56 +95,37 @@ public class QuizController {
 		return "addQuestion";
 	}
 
-//in progress
-	@GetMapping("/projects/quiz/editQuestion")
-	public String editQuestion(@ModelAttribute("questions") Questions editQuestion,
-								Model model) {
-		model.addAttribute("question", questionService.getQuestion(editQuestion.getId()));
-		return "editQuestion";
-	}
+//ok
+//	@GetMapping("/projects/quiz/editQuestion")
+//	public String editQuestion(@ModelAttribute("questions") Questions editQuestion,
+//								Model model) {
+//		model.addAttribute("question", questionService.getQuestion(editQuestion.getId()));
+//		return "editQuestion";
+//	}
 //----------->
+	@PostMapping("/projects/quiz/chooseQuestion")
+	public String chooseQuestion(@ModelAttribute("id")Long id,
+								 @ModelAttribute("questions") Questions editedQuestion,
+								 HttpServletRequest request,
+								 Model model){
+		String btnName = request.getParameter("action");
+
+		if(btnName.equals("Edit")){
+			model.addAttribute("question", questionService.getQuestion(editedQuestion.getId()));
+			return "editQuestion";
+		}
+		else if(btnName.equals("Delete"))
+			questionService.deleteQuestion(id);
+		return "oneQuestion";
+	}
 	@PostMapping(value = "/projects/quiz/editQuestion")
 	public String editQuestion (@ModelAttribute("question") Questions editedQuestion){
-			System.out.println("getId <<<<<<<<<<< "+ editedQuestion.getId());
-		System.out.println("getOdpO <<<<<<<<<<< "+ editedQuestion.getOdpO());
-		System.out.println("getYear <<<<<<<<<<< "+ editedQuestion.getYear());
-		System.out.println("question.getQuestion() <<<<<<<<<<< "+ editedQuestion.getQuestion());
-		System.out.println("getCategory() <<<<<<<<<<< "+ editedQuestion.getCategory());
-		questionService.edittQuestion(editedQuestion);
-		return "allQuestions";
-	}
-	//??????
-	@GetMapping(value = "/projects/quiz/edittQuestion")
-	public String edittQuestion (@ModelAttribute("question") Questions editedQuestion){
 		System.out.println("getId ?????/ "+ editedQuestion.getId());
 		System.out.println("getOdpO <<<<<<<<<<< "+ editedQuestion.getOdpO());
 		System.out.println("getYear <<<<<<<<<<< "+ editedQuestion.getYear());
 		System.out.println("question.getQuestion() <<<<<<<<<<< "+ editedQuestion.getQuestion());
 		System.out.println("getCategory() <<<<<<<<<<< "+ editedQuestion.getCategory());
-		questionService.edittQuestion(editedQuestion);
+		questionService.editQuestion(editedQuestion);
 		return "allQuestions";
 	}
-	///?????????
-	@PostMapping("/projects/quiz/editQuestion/editQuestion")
-	public String editttQuestion (@ModelAttribute("editQuestion")Questions editQuestion){
-		questionService.edittQuestion(editQuestion);
-		return "editQuestion";
-	}
-	@DeleteMapping(value = "delete" )
-	public String deleteQuestion(@ModelAttribute("id")Long id ){
-		questionService.deleteQuestion(id);
-		return "allQuestions";
-	}
-
-	@GetMapping("/projects/quiz/deleteQuestion")
-	public String getDeleteQuestion(@ModelAttribute("question") Questions deleteQuestion, Model model){
-		model.addAttribute("question", deleteQuestion);
-		return "deleteQuestion";
-	}
-	@PostMapping("/projects/quiz/deleteQuestion")
-	public String postDeleteQuestion(@RequestParam("id") Long id, @ModelAttribute("question") Questions deleteQuestion, Model model){
-		model.addAttribute(deleteQuestion);
-		return "deleteQuestion";
-	}
-
 }

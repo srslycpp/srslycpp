@@ -46,11 +46,11 @@ public class QuestionService {
            return questionsRepository.save(questions);
     }
 
-    public Questions editQuestion (Long id){
+    public Questions edittQuestion (Long id){
         Questions question = questionsRepository.findById(id).get();
         return question;
     }
-    public Questions edittQuestion (Questions editQuestions){
+    public Questions editQuestion (Questions editQuestions){
         System.out.println("QuestionService getYear "+ editQuestions.getYear());
         System.out.println("QuestionService getGoodA "+ editQuestions.getOdpO());
         System.out.println("QuestionService getQuestion "+ editQuestions.getQuestion());

@@ -11,9 +11,9 @@
 
     <table class="blueTable" th:each="question : ${questions}">
          <thead>
-         <form action="#" th:action="@{/projects/quiz/editQuestion}"  method="get">
-             <input value="Edit" type="submit" />
-             <!--<input value="Delete" name="delete" type="submit" />-->
+         <form action="#" th:action="@{/projects/quiz/chooseQuestion}"  method="post">
+             <input value="Edit" name="action" type="submit" />
+             <input value="Delete" name="action" type="submit" />
              <input type="radio" name="id" th:value="${question.id}" />
          <td colspan="2" th:utext="'Q: ' +${question.question}"></td>
          </form>
