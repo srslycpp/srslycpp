@@ -38,7 +38,7 @@ public class Questions {
 	public Questions(Long id, String question, String odpO, String odpA, String odpB, String odpC, String odpD,
 					 String category, String year) {
 		super();
-		this.id = id;
+
 		this.question = question;
 		this.odpO = odpO;
 		this.odpA = odpA;

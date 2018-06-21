@@ -14,7 +14,7 @@
          <form action="#" th:action="@{/projects/quiz/chooseQuestion}"  method="post">
              <input value="Edit" name="action" type="submit" />
              <input value="Delete" name="action" type="submit" />
-             <input type="radio" name="id" th:value="${question.id}" />
+             <input type="radio" name="checked" th:value="${question.id}" />
          <td colspan="2" th:utext="'Q: ' +${question.question}"></td>
          </form>
          </thead>

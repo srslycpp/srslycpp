@@ -104,19 +104,27 @@ public class QuizController {
 //	}
 //----------->
 	@PostMapping("/projects/quiz/chooseQuestion")
-	public String chooseQuestion(@ModelAttribute("id")Long id,
+	public String chooseQuestion(@ModelAttribute("checked") String checked, //Why no Long ? "No primary constructor"
 								 @ModelAttribute("questions") Questions editedQuestion,
 								 HttpServletRequest request,
-								 Model model){
+								 Model model)  {
 		String btnName = request.getParameter("action");
+		//Long id = request.getParameter("id").getClass().getName();
 
-		if(btnName.equals("Edit")){
-			model.addAttribute("question", questionService.getQuestion(editedQuestion.getId()));
-			return "editQuestion";
+		if (checked == null || checked.equals("")) {
+			System.out.println("if id -> |"+checked+"| <-");
+			return "noId";
+		} else {
+			if (btnName.equals("Edit")) {
+				System.out.println("Edit ID ->> "+checked);
+				//model.addAttribute("question", questionService.getQuestion(editedQuestion.getId()));
+				model.addAttribute("question", questionService.getQuestion(editedQuestion.getId()));
+				return "editQuestion";
+			} else if (btnName.equals("Delete"))
+				System.out.println("Delete ID ->> "+checked);
+				questionService.deleteQuestion(editedQuestion.getId());
+			return "oneQuestion";
 		}
-		else if(btnName.equals("Delete"))
-			questionService.deleteQuestion(id);
-		return "oneQuestion";
 	}
 	@PostMapping(value = "/projects/quiz/editQuestion")
 	public String editQuestion (@ModelAttribute("question") Questions editedQuestion){
