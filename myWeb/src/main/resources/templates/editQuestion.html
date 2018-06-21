@@ -13,19 +13,19 @@
    <!--<p th:text="${id}">. </p>-->
    <!--<p th:text="${question}">. </p>-->
    <!--<p th:text="${odpA}">. </p>-->
-   <p th:text="'ID: ' + ${question.id}"></p>
-   <p th:text="'Q: ' + ${question.question}"></p>
-   <p th:text="'Category: ' + ${question.category}"></p>
-      <form th:action="@{/projects/quiz/editQuestion}" th:object="${question}" method="post">
+   <p th:text="'ID: ' + ${editQuestion.id}"></p>
+   <p th:text="'Q: ' + ${editQuestion.question}"></p>
+   <p th:text="'Category: ' + ${editQuestion.category}"></p>
+      <form th:action="@{/projects/quiz/editQuestion}" th:object="${editQuestion}" method="post">
 
-      <textarea th:field = "*{question}" rows = "5" cols = "60" > <p th:text="${question.question}"></p></textarea><br>
+      <textarea th:field = "*{question}" rows = "5" cols = "60" > <p th:text="${editQuestion.question}"></p></textarea><br>
 
       <!--<input th:type="text" th:value = "${question}" rows = "5" cols = "60" >-->
 
-      <input th:type="text" th:value = "${question.odpA}" th:field = "*{odpA}"   maxlength="255" size="33">
-      <input th:type="text" th:value = "${question.odpB}" th:field = "*{odpB}" maxlength="255" size="33"><br>
-      <input th:type="text" th:value = "${question.odpC}" th:field = "*{odpC}" maxlength="255" size="33">
-      <input th:type="text" th:value = "${question.odpD}" th:field = "*{odpD}" maxlength="255" size="33"><br>
+      <input th:type="text" th:value = "${editQuestion.odpA}" th:field = "*{odpA}"   maxlength="255" size="33">
+      <input th:type="text" th:value = "${editQuestion.odpB}" th:field = "*{odpB}" maxlength="255" size="33"><br>
+      <input th:type="text" th:value = "${editQuestion.odpC}" th:field = "*{odpC}" maxlength="255" size="33">
+      <input th:type="text" th:value = "${editQuestion.odpD}" th:field = "*{odpD}" maxlength="255" size="33"><br>
 
       <select th:field = "*{odpO}" >
          <option value="" disabled selected >Select Good Answer</option>

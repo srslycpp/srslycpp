@@ -10,25 +10,26 @@
     <div th:replace="template :: up"></div>
 
     <table class="blueTable" th:each="question : ${questions}">
-         <thead>
-         <form action="#" th:action="@{/projects/quiz/chooseQuestion}"  method="post">
+        <thead>
+         <form th:object="${editQuestion}" th:action="@{chooseQuestion}"  method="post">
              <input value="Edit" name="action" type="submit" />
              <input value="Delete" name="action" type="submit" />
-             <input type="radio" name="checked" th:value="${question.id}" />
-         <td colspan="2" th:utext="'Q: ' +${question.question}"></td>
+             <input type="radio"  name="id" th:value="${question.id}" />
          </form>
          </thead>
-         <tbody>
+        <td th:utext="${question.id}"}></td>
+        <td colspan="2" th:utext="'Q: ' +${question.question}"></td>
+        <tbody>
          <tr>
-            <td th:utext=" 'odpA: ' +${question.odpA} "><input type="radio" th:value="${question.odpA}"/></td>
-            <td th:utext=" 'odpB: ' +${question.odpB} "><input type="radio" th:value="${question.odpB}"/></td>
+            <td th:utext=" 'odpA: ' +${question.odpA} "></td>
+            <td th:utext=" 'odpB: ' +${question.odpB} "></td>
          </tr>
          <tr>
-            <td th:utext=" 'odpC: ' +${question.odpC} "><input type="radio" th:value="${question.odpC}"/></td>
-            <td th:utext=" 'odpD: ' +${question.odpD} "><input type="radio" th:value="${question.odpD}"/></td>
+            <td th:utext=" 'odpC: ' +${question.odpC} "></td>
+            <td th:utext=" 'odpD: ' +${question.odpD} "></td>
          </tr>
          </tbody>
-         </tr>
+        </tr>
          </tfoot>
       </table>
    <div class="links">

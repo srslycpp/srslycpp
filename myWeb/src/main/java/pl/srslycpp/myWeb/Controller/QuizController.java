@@ -15,6 +15,14 @@ public class QuizController {
 	@Autowired
 	private QuestionService questionService;
 
+	private long random;
+	//public long random = new RandomDataGenerator().nextLong(1L, 10L);
+	//Questions questions = new Questions();
+
+	public static long random() {
+
+		return (long) Math.random();
+	}
 	public long getRandom() {
 		return random;
 	}
@@ -23,14 +31,6 @@ public class QuizController {
 		this.random = 1L + (long) (Math.random() * (20L - 1L));
 	}
 
-	private long random;
-	//public long random = new RandomDataGenerator().nextLong(1L, 10L);
-	Questions questions = new Questions();
-
-	public static long random() {
-
-		return (long) Math.random();
-	}
 	@GetMapping("/")
 	public String index() {
 		return "index";
@@ -55,13 +55,13 @@ public class QuizController {
 		return "allQuestions";
 	}
 
-	@PutMapping("/projects/quiz/allQuestions")
-	public String updateQuestions( Model model, @ModelAttribute("question")Questions updatedQuestion){
-		questionService.updateQuestion(updatedQuestion);
-		return "allQuestions";
-	}
+//	@PutMapping("/projects/quiz/allQuestions")
+//	public String updateQuestions( Model model, @ModelAttribute("question")Questions allQuestion){
+//		questionService.updateQuestion(allQuestion);
+//		return "allQuestions";
+//	}
 	@GetMapping({"/projects/quiz/oneQuestion"})
-	public String startUpPage(@ModelAttribute("question") Questions questions, Model model) {
+	public String oneQuestion(@ModelAttribute("question") Questions question, Model model) {
 		setRandom();
 		model.addAttribute("question", questionService.getQuestion(getRandom()).getQuestion());
 		model.addAttribute("odpA", questionService.getQuestion(getRandom()).getOdpA());
@@ -69,10 +69,6 @@ public class QuizController {
 		model.addAttribute("odpC", questionService.getQuestion(getRandom()).getOdpC());
 		model.addAttribute("odpD", questionService.getQuestion(getRandom()).getOdpD());
 		System.out.println(getRandom() +" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		//model.addAttribute("result", questionService.check(null, null));
-		// model.addAttribute(questionsService.check(questions.getGoodAnswer()));
-		// Service service = new Service();
-		// service.questionsGenerator();
 		return "oneQuestion";
 	}
 
@@ -104,25 +100,33 @@ public class QuizController {
 //	}
 //----------->
 	@PostMapping("/projects/quiz/chooseQuestion")
-	public String chooseQuestion(@ModelAttribute("checked") String checked, //Why no Long ? "No primary constructor"
-								 @ModelAttribute("questions") Questions editedQuestion,
+	public String chooseQuestion(@ModelAttribute("id") Long check, //Why no Long ? "No primary constructor"
+								 @ModelAttribute("editQuestion") Questions editQuestion,
 								 HttpServletRequest request,
-								 Model model)  {
-		String btnName = request.getParameter("action");
-		//Long id = request.getParameter("id").getClass().getName();
+								 Model model) throws Exception {
 
-		if (checked == null || checked.equals("")) {
-			System.out.println("if id -> |"+checked+"| <-");
+		String btnName = request.getParameter("action");
+		//Long id = request.getParameter("id");
+
+		if (check == null || check.equals("")) {
+			System.out.println("if id -> |"+check+"| <-");
+			System.out.println("if null id from editQuestion >> "+ editQuestion.getId()+" <<");
+			System.out.println("if null question from editQuestion >> "+ editQuestion.getQuestion()+" <<");
 			return "noId";
 		} else {
 			if (btnName.equals("Edit")) {
-				System.out.println("Edit ID ->> "+checked);
+				System.out.println("Edit ID ->> "+check);
+				System.out.println("if null question from editQuestion >> "+ editQuestion.getQuestion()+" <<");
+
+				System.out.println("if id from editQuestion >> "+ editQuestion.getId()+" <<");
 				//model.addAttribute("question", questionService.getQuestion(editedQuestion.getId()));
-				model.addAttribute("question", questionService.getQuestion(editedQuestion.getId()));
+				model.addAttribute("editQuestion", questionService.getQuestion(editQuestion.getId()));
 				return "editQuestion";
 			} else if (btnName.equals("Delete"))
-				System.out.println("Delete ID ->> "+checked);
-				questionService.deleteQuestion(editedQuestion.getId());
+
+				System.out.println("else if id from editQuestion >> "+ editQuestion.getId()+" <<");
+				System.out.println("Delete ID ->> "+check);
+				questionService.deleteQuestion(editQuestion.getId());
 			return "oneQuestion";
 		}
 	}
