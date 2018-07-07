@@ -99,39 +99,47 @@ public class QuizController {
 //		return "editQuestion";
 //	}
 //----------->
-	@PostMapping("/projects/quiz/chooseQuestion")
-	public String chooseQuestion(@ModelAttribute("id") Long check, //Why no Long ? "No primary constructor"
-								 @ModelAttribute("editQuestion") Questions editQuestion,
+	@GetMapping("/projects/quiz/chooseQuestion")
+	public String chooseQuestion(@ModelAttribute("questions") Questions id, //Why no Long ? "No primary constructor"
+								 @ModelAttribute("XXX") Questions editQuestion,
+//								 @ModelAttribute("action") String btnName,
+// 								 @ModelAttribute("q") String question,
 								 HttpServletRequest request,
 								 Model model) throws Exception {
 
 		String btnName = request.getParameter("action");
 		//Long id = request.getParameter("id");
-
-		if (check == null || check.equals("")) {
-			System.out.println("if id -> |"+check+"| <-");
-			System.out.println("if null id from editQuestion >> "+ editQuestion.getId()+" <<");
+		//Long c = id;
+		if (id == null || id.equals("")) {
+			System.out.println("if id -> |"+id+"| <-");
+			System.out.println("if null id from editQuestion >> "+ editQuestion.getId()+" <<>> " );
 			System.out.println("if null question from editQuestion >> "+ editQuestion.getQuestion()+" <<");
 			return "noId";
 		} else {
 			if (btnName.equals("Edit")) {
-				System.out.println("Edit ID ->> "+check);
-				System.out.println("if null question from editQuestion >> "+ editQuestion.getQuestion()+" <<");
 
+				System.out.println("Edit ID ->> "+id);
+				System.out.println("if null id from editQuestion >> "+ editQuestion.getId()+" <<>> " );
+				System.out.println("if Q from editQuestion >> "+ editQuestion.getQuestion()+" <<");
+				System.out.println("if Category from editQuestion >> "+ editQuestion.getCategory()+" <<");
+				System.out.println("if year from editQuestion >> "+ editQuestion.getYear()+" <<");
+				System.out.println("if A from editQuestion >> "+ editQuestion.getOdpA()+" <<");
+				System.out.println("if OdpO from editQuestion >> "+ editQuestion.getOdpO()+" <<");
 				System.out.println("if id from editQuestion >> "+ editQuestion.getId()+" <<");
 				//model.addAttribute("question", questionService.getQuestion(editedQuestion.getId()));
-				model.addAttribute("editQuestion", questionService.getQuestion(editQuestion.getId()));
+				//model.addAttribute("editQuestion", questionService.getQuestion(editQuestion.getId()));
+				model.addAttribute("editQuestion", questionService.getQuestion(id.getId()));
 				return "editQuestion";
-			} else if (btnName.equals("Delete"))
 
+			} else if (btnName.equals("Delete"))
 				System.out.println("else if id from editQuestion >> "+ editQuestion.getId()+" <<");
-				System.out.println("Delete ID ->> "+check);
+				System.out.println("Delete ID ->> "+id);
 				questionService.deleteQuestion(editQuestion.getId());
 			return "oneQuestion";
 		}
 	}
 	@PostMapping(value = "/projects/quiz/editQuestion")
-	public String editQuestion (@ModelAttribute("question") Questions editedQuestion){
+	public String editQuestion (@ModelAttribute("editQuestion") Questions editedQuestion){
 		System.out.println("getId ?????/ "+ editedQuestion.getId());
 		System.out.println("getOdpO <<<<<<<<<<< "+ editedQuestion.getOdpO());
 		System.out.println("getYear <<<<<<<<<<< "+ editedQuestion.getYear());
@@ -140,4 +148,37 @@ public class QuizController {
 		questionService.editQuestion(editedQuestion);
 		return "allQuestions";
 	}
+
+//	@RequestMapping(value = "/showForm", method=RequestMethod.GET)
+//	public String showForm(Model model) {
+//		Foo foo = new Foo();
+//		foo.setBar("bar");
+//
+//		model.addAttribute("foo", foo);
+//  ...
+//	}
+//
+//	@RequestMapping(value = "/processForm", method=RequestMethod.POST)
+//	public String processForm(@ModelAttribute(value="foo") Foo foo) {
+//  ...
+//	}
+//	html:
+//
+//<form action="#" th:action="@{/processForm}" th:object="${foo}" method="post">
+//  <input type="text" th:field="*{bar}" />
+//  <input type="submit" />
+//</form>
+//	Foo.java:
+//
+//	public class Foo {
+//		private String bar;
+//
+//		public String getBar() {
+//			return bar;
+//		}
+//
+//		public void setBar(String bar) {
+//			this.bar = bar;
+//		}
+//	}
 }

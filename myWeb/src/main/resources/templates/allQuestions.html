@@ -9,28 +9,30 @@
 
     <div th:replace="template :: up"></div>
 
-    <table class="blueTable" th:each="question : ${questions}">
+    <table class="blueTable" th:each="q : ${questions}">
+        <form  th:action="@{/chooseQuestion}" th:object="${questions}" method="get">
         <thead>
-         <form th:object="${editQuestion}" th:action="@{chooseQuestion}"  method="post">
+
              <input value="Edit" name="action" type="submit" />
              <input value="Delete" name="action" type="submit" />
-             <input type="radio"  name="id" th:value="${question.id}" />
-         </form>
+             <input type="radio"  name="id" th:field="*{id}" />
+        </form>
          </thead>
-        <td th:utext="${question.id}"}></td>
-        <td colspan="2" th:utext="'Q: ' +${question.question}"></td>
+        <td th:utext="${q.id}"}></td>
+        <td colspan="2" th:utext="'Q: ' +${q.question}" th:value = "${q.question}" name="que"></td>
         <tbody>
          <tr>
-            <td th:utext=" 'odpA: ' +${question.odpA} "></td>
-            <td th:utext=" 'odpB: ' +${question.odpB} "></td>
+            <td th:utext=" 'odpA: ' +${q.odpA} " th:value = "${q.odpA}"></td>
+            <td th:utext=" 'odpB: ' +${q.odpB} " th:value = "${q.odpB}"></td>
          </tr>
          <tr>
-            <td th:utext=" 'odpC: ' +${question.odpC} "></td>
-            <td th:utext=" 'odpD: ' +${question.odpD} "></td>
+            <td th:utext=" 'odpC: ' +${q.odpC} " th:value = "${q.odpC}"></td>
+            <td th:utext=" 'odpD: ' +${q.odpD} " th:value = "${q.odpD}"></td>
          </tr>
-         </tbody>
+        </tbody>
         </tr>
          </tfoot>
+
       </table>
    <div class="links">
       <a href="#">&laquo;</a>
