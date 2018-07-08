@@ -4,7 +4,15 @@
     <meta charset="UTF-8"/>
     <title>My Recipes</title>
 </head>
-<body>
 <h1> My Recipes </h1>
+<table th:each="recipe : ${recipes}">
+
+<tr>
+    <td th:text="'ID: '+${recipe.id}"></td>
+    <td th:text="'Description: '+${recipe.description}"></td>
+</tr>
+
+
+</table>
 </body>
 </html>
