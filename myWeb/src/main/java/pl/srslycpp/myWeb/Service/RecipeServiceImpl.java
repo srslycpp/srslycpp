@@ -6,6 +6,7 @@ import pl.srslycpp.myWeb.RecipeEntity.Recipe;
 import pl.srslycpp.myWeb.RecipeRepository.RecipeRepository;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
@@ -25,4 +26,21 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.findAll().iterator().forEachRemaining(recipes::add);
         return recipes;
     }
+
+    @Override
+    public Recipe getRecipesById(Long id) {
+        return recipeRepository.findById(id).get();
+
+    }
+
+    @Override
+    public Recipe getRecipeById(Long id) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+
+        if(!recipeOptional.isPresent()){
+            throw new RuntimeException("Recipe Not Found");
+        }
+        return recipeOptional.get();
+    }
+
 }

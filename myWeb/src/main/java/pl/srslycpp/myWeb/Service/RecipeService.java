@@ -9,4 +9,6 @@ import java.util.Set;
 @Service
 public interface RecipeService  {
      Set<Recipe> getRecipes();
+     Recipe getRecipeById(Long id);
+     Recipe getRecipesById(Long id);
 }
