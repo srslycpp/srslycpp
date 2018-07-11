@@ -2,8 +2,12 @@ package pl.srslycpp.myWeb.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.srslycpp.myWeb.RecipeEntity.Recipe;
 import pl.srslycpp.myWeb.RecipeRepository.RecipeRepository;
+import pl.srslycpp.myWeb.commands.RecipeCommand;
+import pl.srslycpp.myWeb.converters.RecipeCommandToRecipe;
+import pl.srslycpp.myWeb.converters.RecipeToRecipeCommand;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -14,11 +18,14 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
-
     @Override
     public Set<Recipe> getRecipes() {
 
@@ -28,19 +35,25 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe getRecipesById(Long id) {
-        return recipeRepository.findById(id).get();
+    public Recipe findById(Long id) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+
+        if (!recipeOptional.isPresent()) {
+            throw new RuntimeException("Recipe Not Found!");
+        }
+
+        return recipeOptional.get();
 
     }
 
     @Override
-    public Recipe getRecipeById(Long id) {
-        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+    @Transactional
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
 
-        if(!recipeOptional.isPresent()){
-            throw new RuntimeException("Recipe Not Found");
-        }
-        return recipeOptional.get();
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.debug("Saved RecipeId:" + savedRecipe.getId());
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 
 }

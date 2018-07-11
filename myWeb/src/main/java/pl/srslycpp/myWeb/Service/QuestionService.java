@@ -3,7 +3,7 @@ package pl.srslycpp.myWeb.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.srslycpp.myWeb.Entity.Questions;
-import pl.srslycpp.myWeb.Repository.QuestionsRepository;
+import pl.srslycpp.myWeb.QuestionRepository.QuestionsRepository;
 
 import java.util.ArrayList;
 import java.util.List;

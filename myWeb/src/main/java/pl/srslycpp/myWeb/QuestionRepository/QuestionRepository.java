@@ -1,4 +1,4 @@
-package pl.srslycpp.myWeb.Repository;
+package pl.srslycpp.myWeb.QuestionRepository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
