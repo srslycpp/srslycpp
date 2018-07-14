@@ -2,9 +2,12 @@ package pl.srslycpp.myWeb.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.srslycpp.myWeb.Service.RecipeService;
+import pl.srslycpp.myWeb.commands.RecipeCommand;
 
 @Controller
 public class RecipeController {
@@ -15,10 +18,30 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @RequestMapping("/projects/recipe/{id}")
-    String getById(Model model, @PathVariable("id") Long id){
-        model.addAttribute("recipe", recipeService.findById(id));
+    @RequestMapping("/projects/recipe/{id}/show")
+    String getById(Model model, @PathVariable("id") String id){
+        model.addAttribute("recipe", recipeService.findById(new Long(id)));
         System.out.println("Id "+ id);
         return "recipe/show";
+    }
+    @RequestMapping("/projects/recipe/new")
+    String newRecipe(Model model){
+
+        model.addAttribute("recipe", new RecipeCommand());
+        return "recipe/recipeform";
+    }
+
+    @RequestMapping("/projects/recipe/{id}/update")
+    public String update(Model model, @PathVariable("id") Long id){
+        model.addAttribute("recipe", recipeService.findById(id));
+        return "recipe/recipeform";
+    }
+
+    @PostMapping
+    @RequestMapping("recipe")
+    String saveOrUpadate(@ModelAttribute RecipeCommand command){
+        RecipeCommand saveRecipe = recipeService.saveRecipeCommand(command);
+
+        return "redirect:/projects/recipe/" + saveRecipe.getId()+"/show";
     }
 }
