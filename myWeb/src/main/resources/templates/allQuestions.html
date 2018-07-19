@@ -9,32 +9,26 @@
 
     <div th:replace="template :: up"></div>
 
-    <table class="blueTable" th:each="q : ${questions}">
-        <form  th:action="@{/chooseQuestion}" th:object="${questions}" method="get">
-        <thead>
+    <table class="blueTable" th:each="question : ${allQuestions}">
+        <td><a href="#" th:href="@{'/projects/quiz/' + ${question.id} + '/editQuestion'}">Edit</a> </td>
+        <td><a href="#" th:href="@{'/projects/quiz/' + ${question.id} + '/deleteQuestion'}">Delete</a> </td>
 
-             <input value="Edit" name="action" type="submit" />
-             <input value="Delete" name="action" type="submit" />
-             <input type="radio"  name="id" th:field="*{id}" />
-        </form>
-         </thead>
-        <td th:utext="${q.id}"}></td>
-        <td colspan="2" th:utext="'Q: ' +${q.question}" th:value = "${q.question}" name="que"></td>
+            <thead>
+                <td colspan="2" th:utext="'Q: ' +${question.question}"></td>
+            </thead>
         <tbody>
-         <tr>
-            <td th:utext=" 'odpA: ' +${q.odpA} " th:value = "${q.odpA}"></td>
-            <td th:utext=" 'odpB: ' +${q.odpB} " th:value = "${q.odpB}"></td>
-         </tr>
-         <tr>
-            <td th:utext=" 'odpC: ' +${q.odpC} " th:value = "${q.odpC}"></td>
-            <td th:utext=" 'odpD: ' +${q.odpD} " th:value = "${q.odpD}"></td>
-         </tr>
+            <tr>
+                <td th:utext=" 'odpA: ' +${question.odpA} " ></td>
+                <td th:utext=" 'odpB: ' +${question.odpB} " ></td>
+            </tr>
+            <tr>
+                <td th:utext=" 'odpC: ' +${question.odpC} " ></td>
+                <td th:utext=" 'odpD: ' +${question.odpD} " ></td>
+            </tr>
         </tbody>
-        </tr>
-         </tfoot>
+    </table>
 
-      </table>
-   <div class="links">
+    <div class="links">
       <a href="#">&laquo;</a>
       <a class="active" href="#">1</a>
       <a href="#">2</a>
@@ -42,15 +36,13 @@
       <a href="#">4</a>
       <a href="#">&raquo;</a>
    </div>
-    <div th:replace="template :: delete"></div>
+
     <div th:replace="template :: add"></div>
     <div th:replace="template :: all"></div>
     <div th:replace="template :: one"></div>
-    <div th:replace="template :: edit"></div>
 
     <div th:replace="template :: links"></div>
     <div th:replace="template :: footer"></div>
 </div>
 </body>
-
 </html>

@@ -56,11 +56,11 @@
    <div th:fragment="footer"><div class="rectangle">2018 &copy; Srslycpp.pl <i class="icon-mail-alt"></i> me@srslycpp.pl</div></div>
 </div>
 
-<div th:fragment="delete"><div class="icon"><a href="/projects/quiz/deleteQuestion" shape="rect" ><i class="icon-cancel-outline"></i></a></div></div>
-<div th:fragment="add"><div class="icon"><a href="/projects/quiz/addQuestion" shape="rect" ><i class="icon-plus-outline"></i></a></div></div>
-<div th:fragment="all"><div class="icon"><a href="/projects/quiz/allQuestions" shape="rect" ><i class="icon-down-outline"></i></a></div></div>
-<div th:fragment="one"><div class="icon"><a href="/projects/quiz/oneQuestion" shape="rect" ><i class="icon-right-outline"></i></a></div></div>
-<div th:fragment="edit"><div class="icon"><a href="/projects/quiz/editQuestion" shape="rect" ><i class="icon-right-outline"></i></a></div></div>
+<div th:fragment="delete"><div class="icon"><a th:href="@{'/projects/quiz/' +${question.id}+'/deleteQuestion'}" shape="rect" ><i class="icon-cancel-outline"></i></a></div></div>
+<div th:fragment="add"><div class="icon"><a th:href="@{/projects/quiz/addQuestion}" shape="rect" ><i class="icon-plus-outline"></i></a></div></div>
+<div th:fragment="all"><div class="icon"><a th:href="@{/projects/quiz/allQuestions}" shape="rect" ><i class="icon-down-outline"></i></a></div></div>
+<div th:fragment="one"><div class="icon"><a th:href="@{/projects/quiz/oneQuestion}" shape="rect" ><i class="icon-right-outline"></i></a></div></div>
+<div th:fragment="edit"><div class="icon"><a th:href="@{'/projects/quiz/'+${question.id}+'/editQuestion'}" shape="rect" ><i class="icon-wrench"></i></a></div></div>
 
 
 </body>

@@ -55,27 +55,29 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-right-outline:before { content: '\e800'; font-size: 30px; } /* '' */
-.icon-down-outline:before { content: '\e801'; font-size: 30px;} /* '' */
-.icon-block-outline:before { content: '\e802'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-plus-outline:before { content: '\e803'; font-size: 30px;} /* '' */
-.icon-emo-thumbsup:before { content: '\e804'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-cancel-outline:before { content: '\e805'; font-size: 30px;} /* '' */
-.icon-scissors-outline:before { content: '\e806'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-user:before { content: '\e807'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-emo-coffee:before { content: '\e808'; font-size: 76px; margin-top: 1px;} /* '' */
-.icon-skype:before { content: '\e809'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-key:before { content: '\e80a'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-dropbox:before { content: '\e80b'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-youtube:before { content: '\e80c'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-user-1:before { content: '\e80d'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-ok-circled:before { content: '\e80e'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-laptop:before { content: '\e80f'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-twitter-1:before { content: '\e810'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-right-outline:before { content: '\ea55'; font-size: 30px; } /* '' */
+.icon-down-outline:before { content: '\ea53'; font-size: 30px;} /* '' */
+.icon-block-outline:before { content: '\ea3d'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-plus-outline:before { content: '\e9d9'; font-size: 30px;} /* '' */
+.icon-emo-thumbsup:before { content: '\e807'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-cancel-outline:before { content: '\e9d3'; font-size: 30px;} /* '' */
+.icon-scissors-outline:before { content: '\eab7'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-user:before { content: '\e818'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-emo-coffee:before { content: '\e80b'; font-size: 76px; margin-top: 1px;} /* '' */
+.icon-skype:before { content: '\f17e'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-key:before { content: '\e8c1'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-dropbox:before { content: '\f16b'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-youtube:before { content: '\f167'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-user-1:before { content: '\e8cf'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-ok-circled:before { content: '\e82b'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-laptop:before { content: '\f109'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-twitter-1:before { content: '\f309'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-pencil-circled:before { content: '\e802'; font-size: 30px; } /* '' */
 .icon-github-circled-alt2:before { content: '\f056'; font-size: 76px; margin-top: 35px;} /* '' */
-.icon-gplus:before { content: '\f05a'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-gplus:before { content: '\f0d5'; font-size: 76px; margin-top: 35px;} /* '' */
 .icon-facebook:before { content: '\f09a'; font-size: 76px; margin-top: 35px;} /* '' */
 .icon-mail-alt:before { content: '\f0e0'; } /* '' */
 .icon-angle-circled-left:before { content: '\f137'; font-size: 76px; margin-top: 35px;} /* '' */
 .icon-angle-circled-right:before { content: '\f138'; font-size: 76px; margin-top: 35px;} /* '' */
 .icon-graduation-cap:before { content: '\f19d'; font-size: 76px; margin-top: 35px;} /* '' */
+.icon-wrench:before { content: '\e800'; font-size: 30px;} /* '' */

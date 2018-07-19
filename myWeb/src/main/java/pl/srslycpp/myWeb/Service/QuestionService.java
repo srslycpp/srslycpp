@@ -16,10 +16,6 @@ public class QuestionService {
     @Autowired
     private QuestionsRepository questionsRepository;
 
-//    private List<Questions> questions1 = Arrays.asList(new Questions(1L, "1", "1", "1", "1", "1", "1", "1", 1),
-//            new Questions(2L, "1", "1", "1", "1", "1", "1", "1", 1),
-//            new Questions(3L, "1", "1", "1", "1", "1", "1", "1", 1),
-//            new Questions(4L, "1", "1", "1", "1", "1", "1", "1", 1));
 
     public List<Questions> allQuestions(){
         List<Questions> questions = new ArrayList<>(questionsRepository.findAll());
@@ -30,7 +26,7 @@ public class QuestionService {
         Questions oneQuestion = questionsRepository.findById(id).get();
         return oneQuestion;
     }
-    public Questions updateQuestion(Questions updateQuestion){
+    public Questions updateQuestionCommand(Questions updateQuestion){
         return questionsRepository.save(updateQuestion);
     }
 

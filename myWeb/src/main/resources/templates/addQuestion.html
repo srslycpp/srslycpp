@@ -9,10 +9,10 @@
 
    <div th:replace="template :: up"></div>
 
-      <form th:action="@{addQuestion}" th:object="${addQuestion}" method="post">
+      <form th:action="@{/updateOrSaveQuestion}" th:object="${addQuestion}" method="post">
          <!--<input th:type="number" th:field="*{id}" placeholder="Enter here Question's id"><br>-->
 
-         <!--<input type="hidden" th:value="${question.id}" th:field="*{id}"/>-->
+         <input input type="hidden" th:field="*{id}"/>
          <textarea placeholder="Enter Your Question here" rows = "5" cols = "60" th:field = "*{question}" >... </textarea><br>
 
          <input th:type="text" th:field="*{odpA}" placeholder="Enter here Answer A">

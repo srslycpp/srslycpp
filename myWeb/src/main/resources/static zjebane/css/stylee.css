@@ -186,7 +186,7 @@ table.blueTable {
   width: 100%;
   text-align: left;
 }
-table.blueTable td{
+table.blueTable td, table.blueTable tr {
   border: 1px solid #AAAAAA;
   padding: 3px 2px;
 }

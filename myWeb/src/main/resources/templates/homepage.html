@@ -10,7 +10,6 @@
 
    <div th:replace="template :: up"></div>
 
-
    <div class="square">
       <div class="tile1">
          <i class="icon-user"></i><br />...</a>
@@ -39,14 +38,23 @@
    </div>
    <div class="square">
       <div class="tile5">
-         <ul>
             <li><a href="https://docs.spring.io/spring/docs/3.1.x/spring-framework-reference/htmlsingle/spring-framework-reference.html#spring-introduction">
                Https://docs.spring.io
             </a></li>
             <li><a href="https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html">
                Https://thymeleaf.org
             </a></li>
+            <li><a href="https://dzone.com/articles/a-guide-to-spring-framework-annotations">
+               Framework-Annotations
+            </a></li>
+            <li><a href="https://www.youtube.com/watch?v=yxftYGvacUc">
+               Spring MVC Youtube
+            </a></li>
+            <li><a href="https://howtodoinjava.com/hibernate/hibernate-jpa-cascade-types/">
+               Hibernate Tutorial
+            </a></li>
          </ul>
+         <a href="#" th:href="@{/interestingLinks}">More</a>
       </div>
 
       <div th:replace="template :: links"></div>
