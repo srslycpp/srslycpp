@@ -3,12 +3,11 @@ package pl.srslycpp.myWeb.Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.srslycpp.myWeb.RecipeRepository.RecipeRepository;
 import pl.srslycpp.myWeb.Service.IngredientService;
 import pl.srslycpp.myWeb.Service.RecipeService;
+import pl.srslycpp.myWeb.commands.IngredientCommand;
 
 @Slf4j
 @Controller
@@ -38,11 +37,43 @@ public class IngredientsController {
     }
 
     @GetMapping
-    @RequestMapping("/projects/recipe/{recipeId}/ingredient/{id}/show")
+    @RequestMapping("/projects/recipe/{recipeId}/ingredient/{ingredientId}/show")
     public String ingredientView(@PathVariable Long recipeId,
-                                 @PathVariable Long id, Model model){
-        model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(recipeId, id));
+                                 @PathVariable Long ingredientId, Model model){
+        model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(recipeId, ingredientId));
 
         return "recipe/ingredients/showIngredient";
+    }
+
+    @GetMapping
+    @RequestMapping("/projects/recipe/{recipeId}/ingredient/{ingredientId}/update")
+    public String updateIngredient(@PathVariable Long recipeId,
+                                   @PathVariable Long ingredientId, Model model){
+        model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(recipeId, ingredientId));
+        // tak sie nie da  // model.addAttribute("recipe", recipeService.findById(recipeId));
+        return "recipe/ingredients/ingredientform";
+    }
+    @GetMapping
+    @RequestMapping("/projects/recipe/{recipeId}/ingredient/new")
+    public String newIngredient(@PathVariable Long recipeId, Model model){
+        model.addAttribute("ingredient", new IngredientCommand() );
+        return "recipe/ingredients/ingredientform";
+    }
+
+    @PostMapping
+    @RequestMapping("/saveIngredient")
+    public String saveAndUpdate(@ModelAttribute IngredientCommand ingredientCommand){
+
+        ingredientService.saveAndUpdate(ingredientCommand);
+        return "redirect:/projects/recipe/ingredients/listOfIngredients";
+    }
+
+    @GetMapping
+    @RequestMapping("/projects/recipe/{recipeId}/ingredient/{ingredientId}/delete")
+    public String deleteIngredient(@PathVariable Long recipeId, @PathVariable Long ingredientId){
+        //ingredientService.deleteIngredient(ingredientId);
+        ingredientService.deleteIngredientByRecipeIdAndIngredientId(recipeId, ingredientId);
+        System.out.println("++++");
+        return "redirect:/projects/recipe/" + recipeId + "/listOfIngredients";
     }
 }

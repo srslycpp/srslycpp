@@ -48,9 +48,9 @@
                                 <td th:text="${ingredient.amount} + ' ' + ${ingredient.unitOfMeasure.getDescription()} + ' ' + ${ingredient.description}">Tasty Goodnees 3</td>
                             </tr>
                         </table>
-                        <a href="#" th:href="@{'/projects/recipe/' + ${ingredient.id} + '/update'}">Update</a>
-                        <a href="#" th:href="@{/projects/recipe/new}">New</a>
-                        <a href="#" th:href="@{'/projects/recipe/index'}">Back to Index</a>
+                        <a href="#" th:href="@{'/projects/recipe/' + ${ingredient.recipeId} + '/ingredient/' + ${ingredient.id} + '/update'}">Update</a>
+                        <a href="#" th:href="@{'/projects/recipe/' + ${ingredient.recipeId} + '/ingredient/new'}">New Ingredient</a>
+                        <a href="#" th:href="@{'/projects/recipe/' + ${ingredient.recipeId} + '/ingredient/showIngredient'}">Back to Ingredients list</a>
 
                     </div>
                 </div>
