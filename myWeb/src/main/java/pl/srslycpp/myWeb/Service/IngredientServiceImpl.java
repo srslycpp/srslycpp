@@ -71,14 +71,17 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<Recipe> findedRecipe = recipeRepository.findById(recipeId);
 
         Recipe recipe = findedRecipe.get();
-
+        System.out.println("recipe.getId(): "+ recipe.getId());
+        System.out.println("idToDelete: "+ idToDelete);
         Optional<Ingredient> ingredientOptional = recipe.getIngredients()
                 .stream()
-                .filter(ingredient -> ingredient.equals(idToDelete))
+                .filter(ingredient -> ingredient.getId().equals(idToDelete))
                 .findFirst();
         if(ingredientOptional.isPresent()){
+            System.out.println(ingredientOptional.isPresent());
             Ingredient ingredientToDelete = ingredientOptional.get();
             ingredientToDelete.setRecipe(null);
+            System.out.println("ingredientToDelete.getRecipe(): " + ingredientToDelete.getRecipe());
             recipeRepository.save(recipe);
         }
     }
