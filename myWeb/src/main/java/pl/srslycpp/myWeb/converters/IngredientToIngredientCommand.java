@@ -23,12 +23,19 @@ public class IngredientToIngredientCommand implements Converter<Ingredient, Ingr
         if (ingredient == null) {
             return null;
         }
-
         IngredientCommand ingredientCommand = new IngredientCommand();
         ingredientCommand.setId(ingredient.getId());
         ingredientCommand.setAmount(ingredient.getAmount());
-        if(ingredientCommand.getRecipeId() == null){
+
+        if(ingredient.getRecipe() != null){
+            System.out.println("ingredient.getRecipe().getId(): "+ingredient.getRecipe().getId());
+            System.out.println("ingredientCommand.getRecipeId(): "+ingredientCommand.getRecipeId());
+            System.out.println("ingredient.getId(): "+ingredient.getId());
+            System.out.println("_-____--_-___-------____-----__ "+ingredient.getId());
             ingredientCommand.setRecipeId(ingredient.getRecipe().getId());
+            System.out.println(" ");
+            System.out.println("ingredientCommand.getRecipeId(): "+ingredientCommand.getRecipeId());
+
         }
         ingredientCommand.setDescription(ingredient.getDescription());
         ingredientCommand.setUnitOfMeasure(uomConverter.convert(ingredient.getUnitOfMeasure()));

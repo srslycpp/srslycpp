@@ -12,47 +12,47 @@ import pl.srslycpp.myWeb.commands.RecipeCommand;
 @Component
 public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand>{
 
-    private final CategoryToCategoryCommand categoryConveter;
-    private final IngredientToIngredientCommand ingredientConverter;
-    private final NotesToNotesCommand notesConverter;
+    private final CategoryToCategoryCommand categoryToCategoryCommand;
+    private final IngredientToIngredientCommand ingredientToIngredientCommand;
+    private final NotesToNotesCommand notesToNotesCommand;
 
-    public RecipeToRecipeCommand(CategoryToCategoryCommand categoryConveter, IngredientToIngredientCommand ingredientConverter,
-                                 NotesToNotesCommand notesConverter) {
-        this.categoryConveter = categoryConveter;
-        this.ingredientConverter = ingredientConverter;
-        this.notesConverter = notesConverter;
+    public RecipeToRecipeCommand(CategoryToCategoryCommand categoryToCategoryCommand, IngredientToIngredientCommand ingredientToIngredientCommand,
+                                 NotesToNotesCommand notesToNotesCommand) {
+        this.categoryToCategoryCommand = categoryToCategoryCommand;
+        this.ingredientToIngredientCommand = ingredientToIngredientCommand;
+        this.notesToNotesCommand = notesToNotesCommand;
     }
 
     @Synchronized
     @Nullable
     @Override
-    public RecipeCommand convert(Recipe source) {
-        if (source == null) {
+    public RecipeCommand convert(Recipe recipeSource) {
+        if (recipeSource == null) {
             return null;
         }
 
-        final RecipeCommand command = new RecipeCommand();
-        command.setId(source.getId());
-        command.setCookTime(source.getCookTime());
-        command.setPrepTime(source.getPrepTime());
-        command.setDescription(source.getDescription());
-        command.setDifficulty(source.getDifficulty());
-        command.setDirections(source.getDirections());
-        command.setServings(source.getServings());
-        command.setSource(source.getSource());
-        command.setUrl(source.getUrl());
-        command.setNotes(notesConverter.convert(source.getNotes()));
+        final RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(recipeSource.getId());
+        recipeCommand.setCookTime(recipeSource.getCookTime());
+        recipeCommand.setPrepTime(recipeSource.getPrepTime());
+        recipeCommand.setDescription(recipeSource.getDescription());
+        recipeCommand.setDifficulty(recipeSource.getDifficulty());
+        recipeCommand.setDirections(recipeSource.getDirections());
+        recipeCommand.setServings(recipeSource.getServings());
+        recipeCommand.setSource(recipeSource.getSource());
+        recipeCommand.setUrl(recipeSource.getUrl());
+        recipeCommand.setNotes(notesToNotesCommand.convert(recipeSource.getNotes()));
 
-        if (source.getCategories() != null && source.getCategories().size() > 0){
-            source.getCategories()
-                    .forEach((Category category) -> command.getCategories().add(categoryConveter.convert(category)));
+        if (recipeSource.getCategories() != null && recipeSource.getCategories().size() > 0){
+            recipeSource.getCategories()
+                    .forEach((Category category) -> recipeCommand.getCategories().add(categoryToCategoryCommand.convert(category)));
         }
 
-        if (source.getIngredients() != null && source.getIngredients().size() > 0){
-            source.getIngredients()
-                    .forEach(ingredient -> command.getIngredients().add(ingredientConverter.convert(ingredient)));
+        if (recipeSource.getIngredients() != null && recipeSource.getIngredients().size() > 0){
+            recipeSource.getIngredients()
+                    .forEach(ingredient -> recipeCommand.getIngredients().add(ingredientToIngredientCommand.convert(ingredient)));
         }
 
-        return command;
+        return recipeCommand;
     }
 }

@@ -7,7 +7,7 @@ import pl.srslycpp.myWeb.commands.IngredientCommand;
 public interface IngredientService {
 
      IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long ingredientId);
-     IngredientCommand saveAndUpdate(IngredientCommand command);
-     void deleteIngredient(Long id);
+     IngredientCommand saveIngredientCommand(IngredientCommand command);
+//     void deleteById(Long recipeId, Long ingerdientId);
      void deleteIngredientByRecipeIdAndIngredientId(Long recipeId, Long ingredientId);
 }

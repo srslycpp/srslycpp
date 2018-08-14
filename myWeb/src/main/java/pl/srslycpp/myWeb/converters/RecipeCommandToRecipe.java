@@ -10,14 +10,14 @@ import pl.srslycpp.myWeb.commands.RecipeCommand;
 @Component
 public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
-    private final CategoryCommandToCategory categoryConveter;
-    private final IngredientCommandToIngredient ingredientConverter;
+    private final CategoryCommandToCategory categoryCommandToCategoryConveter;
+    private final IngredientCommandToIngredient ingredientCommandToIngredient;
     private final NotesCommandToNotes notesConverter;
 
-    public RecipeCommandToRecipe(CategoryCommandToCategory categoryConveter, IngredientCommandToIngredient ingredientConverter,
+    public RecipeCommandToRecipe(CategoryCommandToCategory categoryCommandToCategoryConveter, IngredientCommandToIngredient ingredientCommandToIngredient,
                                  NotesCommandToNotes notesConverter) {
-        this.categoryConveter = categoryConveter;
-        this.ingredientConverter = ingredientConverter;
+        this.categoryCommandToCategoryConveter = categoryCommandToCategoryConveter;
+        this.ingredientCommandToIngredient = ingredientCommandToIngredient;
         this.notesConverter = notesConverter;
     }
 
@@ -43,12 +43,13 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
         if (source.getCategories() != null && source.getCategories().size() > 0){
             source.getCategories()
-                    .forEach( category -> recipe.getCategories().add(categoryConveter.convert(category)));
+                    .forEach( category -> recipe.getCategories().add(categoryCommandToCategoryConveter.convert(category)));
         }
 
         if (source.getIngredients() != null && source.getIngredients().size() > 0){
             source.getIngredients()
-                    .forEach(ingredient -> recipe.getIngredients().add(ingredientConverter.convert(ingredient)));
+                    .forEach(ingredient ->
+                            recipe.getIngredients().add(ingredientCommandToIngredient.convert(ingredient)));
         }
 
         return recipe;

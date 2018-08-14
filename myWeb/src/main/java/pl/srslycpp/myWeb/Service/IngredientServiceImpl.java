@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.srslycpp.myWeb.RecipeEntity.Ingredient;
 import pl.srslycpp.myWeb.RecipeEntity.Recipe;
-import pl.srslycpp.myWeb.RecipeRepository.IngredientRepository;
 import pl.srslycpp.myWeb.RecipeRepository.RecipeRepository;
+import pl.srslycpp.myWeb.RecipeRepository.UnitOfMeasureRepository;
 import pl.srslycpp.myWeb.commands.IngredientCommand;
 import pl.srslycpp.myWeb.converters.IngredientCommandToIngredient;
 import pl.srslycpp.myWeb.converters.IngredientToIngredientCommand;
@@ -20,13 +20,13 @@ public class IngredientServiceImpl implements IngredientService {
     private IngredientCommandToIngredient ingredientCommandToIngredient;
     private IngredientToIngredientCommand ingredientToIngredientCommand;
     private RecipeRepository recipeRepository;
-    private IngredientRepository ingredientRepository;
+    private UnitOfMeasureRepository unitOfMeasureRepository;
 
     public IngredientServiceImpl(IngredientToIngredientCommand ingredientToIngredientCommand, RecipeRepository recipeRepository,
-                                 IngredientRepository ingredientRepository, IngredientCommandToIngredient ingredientCommandToIngredient) {
+                                 UnitOfMeasureRepository unitOfMeasureRepository, IngredientCommandToIngredient ingredientCommandToIngredient) {
         this.recipeRepository = recipeRepository;
         this.ingredientToIngredientCommand = ingredientToIngredientCommand;
-        this.ingredientRepository = ingredientRepository;
+        this.unitOfMeasureRepository = unitOfMeasureRepository;
         this.ingredientCommandToIngredient = ingredientCommandToIngredient;
     }
 
@@ -42,7 +42,8 @@ public class IngredientServiceImpl implements IngredientService {
 
         Recipe recipe = optionalRecipe.get();
 
-        Optional<IngredientCommand> ingredientCommandOptional= recipe.getIngredients().stream().filter(ingredient -> ingredient.getId().equals(ingredientId)).
+        Optional<IngredientCommand> ingredientCommandOptional= recipe.getIngredients()
+                .stream().filter(ingredient -> ingredient.getId().equals(ingredientId)).
                 map(ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
 
         if(!ingredientCommandOptional.isPresent()){
@@ -53,18 +54,69 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     @Transactional
-    public IngredientCommand saveAndUpdate(IngredientCommand command) {
-        Ingredient detachedIngredient = ingredientCommandToIngredient.convert(command);
+    public IngredientCommand saveIngredientCommand(IngredientCommand ingredientCommand ) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(ingredientCommand.getRecipeId());
+        System.out.println("recipeOptional.get().getId() "+recipeOptional.get().getId());
+        if(!recipeOptional.isPresent()){
 
-        Ingredient savedIngredient = ingredientRepository.save(detachedIngredient);
+            //todo toss error if not found!
+            log.error("Recipe not found for id: " + ingredientCommand.getRecipeId());
+            System.out.println("jakis tam if ");
+            return new IngredientCommand();
 
-        return ingredientToIngredientCommand.convert(savedIngredient);
+        } else {
+            Recipe recipe = recipeOptional.get();
+
+
+            Optional<Ingredient> ingredientOptional = recipe
+                    .getIngredients()
+                    .stream()
+                    .filter(ingredient -> ingredient.getId().equals(ingredientCommand.getId()))
+                    .findFirst();
+            if(ingredientOptional.isPresent()){
+                Ingredient ingredientFound = ingredientOptional.get();
+
+                ingredientFound.setDescription(ingredientCommand.getDescription());
+                ingredientFound.setAmount(ingredientCommand.getAmount());
+                ingredientFound.setUnitOfMeasure(unitOfMeasureRepository
+
+                .findById(ingredientCommand.getUnitOfMeasure().getId())     //NullPointerException
+                .orElseThrow(() -> new RuntimeException("UOM NOT FOUND"))); //todo address this
+                System.out.println("jakis tam if "+ ingredientCommand.getUnitOfMeasure().getId()+" "
+                        + ingredientCommand.getUnitOfMeasure().getDescription());
+            } else {
+                //add new Ingredient
+                Ingredient ingredient = ingredientCommandToIngredient.convert(ingredientCommand);
+                ingredient.setRecipe(recipe);
+                recipe.addIngredient(ingredient);
+            }
+
+            Recipe savedRecipe = recipeRepository.save(recipe);
+
+            Optional<Ingredient> savedIngredientOptional = savedRecipe.getIngredients().stream()
+                    .filter(recipeIngredients -> recipeIngredients.getId().equals(ingredientCommand.getId()))
+                    .findFirst();
+
+            //check by description
+            if(!savedIngredientOptional.isPresent()){
+                //not totally safe... But best guess
+                savedIngredientOptional = savedRecipe.getIngredients().stream()
+                        .filter(recipeIngredients -> recipeIngredients.getDescription().equals(ingredientCommand.getDescription()))
+                        .filter(recipeIngredients -> recipeIngredients.getAmount().equals(ingredientCommand.getAmount()))
+                        .filter(recipeIngredients -> recipeIngredients.getUnitOfMeasure().getId().equals(ingredientCommand.getUnitOfMeasure().getId()))
+                        .findFirst();
+            }
+
+            //to do check for fail
+            return ingredientToIngredientCommand.convert(savedIngredientOptional.get());
+        }
+
     }
-
-    @Override
-    public void deleteIngredient(Long id) {
-        ingredientRepository.deleteById(id);
-    }
+//
+//    @Override
+//    public void deleteIngredient(Long id) {
+//        ingredientRepository.deleteById(id);
+//    }
 
     @Override
     public void deleteIngredientByRecipeIdAndIngredientId(Long recipeId, Long idToDelete) {
