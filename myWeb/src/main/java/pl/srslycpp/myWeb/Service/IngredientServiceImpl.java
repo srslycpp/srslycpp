@@ -66,7 +66,7 @@ public class IngredientServiceImpl implements IngredientService {
 
         } else {
             Recipe recipe = recipeOptional.get();
-
+            System.out.println("jakis tam else under Recipe recipe = recipeOptional.get()");
 
             Optional<Ingredient> ingredientOptional = recipe
                     .getIngredients()
@@ -78,8 +78,9 @@ public class IngredientServiceImpl implements IngredientService {
 
                 ingredientFound.setDescription(ingredientCommand.getDescription());
                 ingredientFound.setAmount(ingredientCommand.getAmount());
+                System.out.println("jakis tam if "+ ingredientCommand.getUnitOfMeasure().getId()+" "
+                        + ingredientCommand.getUnitOfMeasure().getDescription());
                 ingredientFound.setUnitOfMeasure(unitOfMeasureRepository
-
                 .findById(ingredientCommand.getUnitOfMeasure().getId())     //NullPointerException
                 .orElseThrow(() -> new RuntimeException("UOM NOT FOUND"))); //todo address this
                 System.out.println("jakis tam if "+ ingredientCommand.getUnitOfMeasure().getId()+" "
@@ -103,7 +104,8 @@ public class IngredientServiceImpl implements IngredientService {
                 savedIngredientOptional = savedRecipe.getIngredients().stream()
                         .filter(recipeIngredients -> recipeIngredients.getDescription().equals(ingredientCommand.getDescription()))
                         .filter(recipeIngredients -> recipeIngredients.getAmount().equals(ingredientCommand.getAmount()))
-                        .filter(recipeIngredients -> recipeIngredients.getUnitOfMeasure().getId().equals(ingredientCommand.getUnitOfMeasure().getId()))
+                        .filter(recipeIngredients -> recipeIngredients.getUnitOfMeasure().getId().equals(ingredientCommand
+                                .getUnitOfMeasure().getId()))
                         .findFirst();
             }
 

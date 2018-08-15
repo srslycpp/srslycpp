@@ -11,6 +11,7 @@ import pl.srslycpp.myWeb.Service.IngredientService;
 import pl.srslycpp.myWeb.Service.RecipeService;
 import pl.srslycpp.myWeb.Service.UnitOfMeasureService;
 import pl.srslycpp.myWeb.commands.IngredientCommand;
+import pl.srslycpp.myWeb.commands.UnitOfMeasureCommand;
 
 @Slf4j
 @Controller
@@ -60,27 +61,31 @@ public class IngredientController {
 
     @GetMapping("/projects/recipe/{recipeId}/ingredient/new")
     public String newIngredient(@PathVariable Long recipeId, Model model){
-        model.addAttribute("ingredient", new IngredientCommand() );
+
+        IngredientCommand newIngredient = new IngredientCommand();
+        newIngredient.setRecipeId(recipeId);
+
+        model.addAttribute("ingredient", newIngredient );
+        newIngredient.setUnitOfMeasure(new UnitOfMeasureCommand());
+
+        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
+
+
         return "recipe/ingredients/ingredientform";
     }
 
 
-//    @PostMapping("/saveIngredient")
-//    public String saveAndUpdate(@ModelAttribute IngredientCommand ingredientCommand){
-//        System.out.println("saveAndUpdate IN IngredientsController getRecipeId: "+ ingredientCommand.getRecipeId());
-//        IngredientCommand savedIngredientCommand = ingredientService.saveAndUpdate(ingredientCommand);
-//        return "redirect:/projects/recipe/index";
-//    }
     @PostMapping("recipe/{recipeId}/ingredient")
     public String saveOrUpdate(@ModelAttribute IngredientCommand ingredientCommand){
-        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(ingredientCommand);
-        System.out.println("saveAndUpdate IN IngredientsController getRecipeId: "+ ingredientCommand.getRecipeId());
-        System.out.println("saveAndUpdate IN IngredientsController getUnitOfMeasure: "+ ingredientCommand.getUnitOfMeasure());
-        System.out.println("saveAndUpdate IN IngredientsController saved.getRecipeId: "+ savedCommand.getRecipeId());
-        System.out.println("saveAndUpdate IN IngredientsController saved.getUnitOfMeasure: "+ savedCommand.getUnitOfMeasure());
 
-        return "redirect:/projects/recipe/" + ingredientCommand.getRecipeId() + "/ingredients/" + savedCommand.getId() + "/showIngredient";
-    }
+        System.out.println("saveAndUpdate IN IngredientsController getRecipeId: "+ ingredientCommand.getRecipeId());
+        System.out.println("saveAndUpdate IN IngredientsController getUnitOfMeasure.getId(): "+ ingredientCommand.getUnitOfMeasure().getId());
+        System.out.println("saveAndUpdate IN IngredientsController getUnitOfMeasure.getDescription(): "+ ingredientCommand.getUnitOfMeasure().getDescription());
+//        System.out.println("saveAndUpdate IN IngredientsController saved.getRecipeId: "+ savedCommand.getRecipeId());
+//        System.out.println("saveAndUpdate IN IngredientsController saved.getUnitOfMeasure: "+ savedCommand.getUnitOfMeasure());
+        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(ingredientCommand);
+        return "redirect:/projects/recipe/" + ingredientCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+    }       //
 
 
     @GetMapping("/projects/recipe/{recipeId}/ingredient/{ingredientId}/delete")
