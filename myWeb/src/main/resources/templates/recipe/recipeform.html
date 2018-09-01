@@ -65,10 +65,18 @@
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Difficulty:</label>
+                                    <select class="form-control" th:field="*{difficulty"}>
+                                        <option
+                                                th:each="dif : ${T(pl.srslycpp.myWeb.RecipeEntity.Difficulty).values()}"
+                                                th:value="${dif.name()}"
+                                                th:text="${dif.name()}">
+                                            easy
+                                        </option>
+                                    </select>
                                     <select class="form-control" th:field="*{difficulty}">
                                         <option th:each="difficultyValue : ${T(pl.srslycpp.myWeb.RecipeEntity.Difficulty).values()}"
-                                        th:value="${difficultyValue.name()}"
-                                        th:text="${difficultyValue.name()}">
+                                                th:value="${difficultyValue.name()}"
+                                                th:text="${difficultyValue.name()}">
                                             Easy
                                         </option>
 
