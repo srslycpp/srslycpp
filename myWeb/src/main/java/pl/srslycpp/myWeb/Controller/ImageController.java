@@ -38,4 +38,6 @@ public class ImageController {
 
         return "redirect:/projects/recipe/" + id + "/show";
     }
+
+
 }

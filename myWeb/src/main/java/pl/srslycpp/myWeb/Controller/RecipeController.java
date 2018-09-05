@@ -19,6 +19,7 @@ public class RecipeController {
     @GetMapping("/projects/recipe/new")
     public String newRecipe(Model model){
         model.addAttribute("recipe", new RecipeCommand());
+
         return "recipe/recipeform";
     }
 
