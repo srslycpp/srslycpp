@@ -1,5 +1,6 @@
 package pl.srslycpp.myWeb.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,8 @@ import pl.srslycpp.myWeb.commands.RecipeCommand;
 public class RecipeController {
 
   RecipeService recipeService;
-
+  
+    @Autowired
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
@@ -70,8 +72,7 @@ public class RecipeController {
 
 
 
-
-
+    
 
 
 
