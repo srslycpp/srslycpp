@@ -97,6 +97,5 @@ package pl.srslycpp.myWeb.App;
 
             // To create an Inner Class you need an instance of Outer Class
             OuterClass.InnerClass innerClass = example.new InnerClass();
-
         }
     }
