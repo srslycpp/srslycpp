@@ -72,7 +72,6 @@ package pl.srslycpp.myWeb.App;
             // Just use the inner class name to create it
             InnerClass inner = new InnerClass();
         }
-
     }
 
     class InnerClassExamples {
