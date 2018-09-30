@@ -1,6 +1,6 @@
 package pl.srslycpp.myWeb.App;
 
-
+// Practice
   public class OuterClass {
         private final int outerClassInstanceVariable =54;
 
