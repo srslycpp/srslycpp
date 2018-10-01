@@ -44,8 +44,7 @@ public class ImageServiceImpl implements ImageService {
 
             e.printStackTrace();
         }
-
-
+        
 
             System.out.println("Received a file");
 

@@ -1,7 +1,7 @@
 package pl.srslycpp.myWeb.App;
 
 // Practice
-  public class OuterClass {
+  public class OuterClass extends Throwable{
         private final int outerClassInstanceVariable =54;
 
             public void exampleMethod() {
