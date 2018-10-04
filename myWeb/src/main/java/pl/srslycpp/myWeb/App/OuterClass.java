@@ -1,13 +1,15 @@
 package pl.srslycpp.myWeb.App;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // Practice
-  public class OuterClass extends Throwable{
+  public class OuterClass extends HashMap implements Map {
         private final int outerClassInstanceVariable =54;
 
             public void exampleMethod() {
                 int localVariable;
                 final int finalVariable = 5;
-
                 class MethodLocalInnerClass {
                    public void method() {
                         // Can access class instance variables
