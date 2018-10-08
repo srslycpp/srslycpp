@@ -74,6 +74,6 @@ public class ClassTest {
             AddingAmonut add = new AddingAmonut();
             System.out.println(add.add(new ClassTest("PLN",6),
                     new ClassTest("PLN",6)).toString());
+        }
     }
-}
 }
