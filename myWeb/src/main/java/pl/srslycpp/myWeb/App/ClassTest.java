@@ -1,5 +1,7 @@
 package pl.srslycpp.myWeb.App;
 
+import java.util.Scanner;
+
 public class ClassTest {
 
     private int amount;
@@ -68,12 +70,34 @@ public class ClassTest {
             }
             throw new RuntimeException(" Ni ma takiego enuma :) ");
         }
+    }
+        public static class Average{
+
+            private double arr[] = new double[10] ;
+            private double ava;
+
+
+            public double countAva(){
+                System.out.println("Enter 10 numbers: ");
+                Scanner sc = new Scanner(System.in);
+                for (int i=0; i<arr.length; i++){
+                   arr[i] = sc.nextDouble();
+                    ava = ava+arr[i];
+                }
+                sc.close();
+                return ava/arr.length;
+            }
+
+        }
+
 
         public static void main(String[] args)  throws Exception{
 
             AddingAmonut add = new AddingAmonut();
             System.out.println(add.add(new ClassTest("PLN",6),
                     new ClassTest("PLN",6)).toString());
-        }
+            Average average = new Average();
+            System.out.println(average.countAva());
+
     }
 }
