@@ -88,7 +88,6 @@ public class ClassTest {
                 return ava/arr.length;
             }
 
-            
         }
 
 
