@@ -33,7 +33,6 @@ public class ClassTest {
         }
     }
 
-
     public enum EnumTest {
 
         FALL(1), SUMMER(2), SPRING(3), WINTER(4);
