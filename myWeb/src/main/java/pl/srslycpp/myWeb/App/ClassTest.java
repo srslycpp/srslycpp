@@ -86,7 +86,6 @@ public class ClassTest {
                 sc.close();
                 return ava/arr.length;
             }
-
         }
 
 
