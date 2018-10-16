@@ -84,7 +84,8 @@ public class ClassTest {
                     ava = ava+arr[i];
                 }
                 sc.close();
-                return ava/arr.length; }
+                return ava/arr.length;
+            }
         }
 
 
