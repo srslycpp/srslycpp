@@ -87,15 +87,70 @@ public class ClassTest {
                 return ava/arr.length;
             }
         }
+    public static class JavaExample {
+        public void binary()
+        {
+            //Two variables to hold two input binary numbers
+            long b1, b2;
+            int i = 0, carry = 0;
 
+            //This is to hold the output binary number
+            int[] sum = new int[10];
 
+            //To read the input binary numbers entered by user
+            Scanner scanner = new Scanner(System.in);
+
+            //getting first binary number from user
+            System.out.print("Enter first binary number: ");
+            b1 = scanner.nextLong();
+            //getting second binary number from user
+            System.out.print("Enter second binary number: ");
+            b2 = scanner.nextLong();
+
+            //closing scanner after use to avoid memory leak
+            scanner.close();
+            while (b1 != 0 || b2 != 0)
+            {
+                System.out.println("pierwsze i: " + i);
+                sum[i++] = (int)((b1 % 10 + b2 % 10 + carry) % 2);
+                System.out.println("sum[i] "+sum[i]);
+                carry = (int)((b1 % 10 + b2 % 10 + carry) / 2);
+                System.out.println("carry "+carry);
+                b1 = b1 / 10;
+                System.out.println("b1: "+b1);
+                b2 = b2 / 10;
+                System.out.println("b2: "+b2);
+            }
+            if (carry != 0) {
+                System.out.println("drugie i w ifie : " + i);
+                sum[i++] = carry;
+            }
+            --i;
+            System.out.println("trzecie i: " + i);
+            System.out.print("Output: ");
+            while (i >= 0) {
+                System.out.print(sum[i--]);
+                System.out.println("czwarte i: " + i+">>> "+carry);
+            }
+            System.out.print("\n");
+        }
+    }
         public static void main(String[] args)  throws Exception{
 
             AddingAmonut add = new AddingAmonut();
             System.out.println(add.add(new ClassTest("PLN",6),
                     new ClassTest("PLN",6)).toString());
             Average average = new Average();
-            System.out.println(average.countAva());
+            //System.out.println(average.countAva());
+            JavaExample binary = new JavaExample();
+            binary.binary();
+
+            double i=1;
+            double j=2;
+            double k=0;
+            System.out.println("main "+ i/2);
+            System.out.println("main "+ j/2);
+            System.out.println("main "+ k/2);
 
     }
 }
