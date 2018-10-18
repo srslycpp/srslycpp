@@ -135,7 +135,7 @@ public class ClassTest {
             System.out.print("\n");
         }
     }
-        public static void main(String[] args)  throws Exception{
+    public static void main(String[] args)  throws Exception{
 
             AddingAmonut add = new AddingAmonut();
             System.out.println(add.add(new ClassTest("PLN",6),
