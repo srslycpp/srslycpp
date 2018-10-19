@@ -15,6 +15,8 @@ public class ClassTest {
                 '}';
     }
 
+    public ClassTest(){}
+
     public ClassTest(String currency, int amount){
         this.amount=amount;
         this.currency=currency;
@@ -135,22 +137,26 @@ public class ClassTest {
             System.out.print("\n");
         }
     }
+
+
     public static void main(String[] args)  throws Exception{
 
-            AddingAmonut add = new AddingAmonut();
-            System.out.println(add.add(new ClassTest("PLN",6),
-                    new ClassTest("PLN",6)).toString());
-            Average average = new Average();
-            //System.out.println(average.countAva());
-            JavaExample binary = new JavaExample();
-            binary.binary();
 
-            double i=1;
-            double j=2;
-            double k=0;
-            System.out.println("main "+ i/2);
-            System.out.println("main "+ j/2);
-            System.out.println("main "+ k/2);
+
+        //            AddingAmonut add = new AddingAmonut();
+//            System.out.println(add.add(new ClassTest("PLN",6),
+//                    new ClassTest("PLN",6)).toString());
+//            Average average = new Average();
+//            //System.out.println(average.countAva());
+//            JavaExample binary = new JavaExample();
+//            binary.binary();
+//
+//            double i=1;
+//            double j=2;
+//            double k=0;
+//            System.out.println("main "+ i/2);
+//            System.out.println("main "+ j/2);
+//            System.out.println("main "+ k/2);
 
     }
 }
