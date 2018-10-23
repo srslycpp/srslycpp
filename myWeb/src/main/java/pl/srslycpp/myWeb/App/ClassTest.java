@@ -1,8 +1,10 @@
 package pl.srslycpp.myWeb.App;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
-public class ClassTest {
+public class ClassTest extends AbstractClassTest implements InterfaceClassTest{
 
     private int amount;
     private String currency;
@@ -18,8 +20,19 @@ public class ClassTest {
     public ClassTest(){}
 
     public ClassTest(String currency, int amount){
+        super();
         this.amount=amount;
         this.currency=currency;
+    }
+
+    @Override
+    public void run() {
+
+    }
+
+    @Override
+    public void runInterface() {
+
     }
 
     public enum EnumTest1{
@@ -138,19 +151,20 @@ public class ClassTest {
         }
     }
 
-    
+
 
     public static void main(String[] args)  throws Exception{
 
+        List list = new LinkedList<>();
 
 
-        //            AddingAmonut add = new AddingAmonut();
-//            System.out.println(add.add(new ClassTest("PLN",6),
-//                    new ClassTest("PLN",6)).toString());
-//            Average average = new Average();
-//            //System.out.println(average.countAva());
-//            JavaExample binary = new JavaExample();
-//            binary.binary();
+                    AddingAmonut add = new AddingAmonut();
+            System.out.println(add.add(new ClassTest("PLN",6),
+                    new ClassTest("PLN",6)).toString());
+            Average average = new Average();
+            //System.out.println(average.countAva());
+            JavaExample binary = new JavaExample();
+            binary.binary();
 //
 //            double i=1;
 //            double j=2;
