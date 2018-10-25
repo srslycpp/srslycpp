@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ClassTest extends AbstractClassTest implements InterfaceClassTest{
+public class ClassTest extends AbstractClassTest{
 
     private int amount;
     private String currency;
@@ -30,10 +30,7 @@ public class ClassTest extends AbstractClassTest implements InterfaceClassTest{
 
     }
 
-    @Override
-    public void runInterface() {
 
-    }
 
     public enum EnumTest1{
         PLN, HRT;
