@@ -30,8 +30,7 @@ public class ClassTest extends AbstractClassTest{
 
     }
 
-
-
+    
     public enum EnumTest1{
         PLN, HRT;
     }
