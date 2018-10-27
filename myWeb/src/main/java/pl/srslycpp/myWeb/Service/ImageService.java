@@ -8,4 +8,5 @@ public interface ImageService {
 
     void saveImageFile(Long recipeId, MultipartFile file);
 
+
 }
