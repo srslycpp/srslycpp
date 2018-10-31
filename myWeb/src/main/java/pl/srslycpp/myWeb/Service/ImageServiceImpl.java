@@ -47,5 +47,4 @@ public class ImageServiceImpl implements ImageService {
 
             System.out.println("Received a file");
         }
-        
 }
