@@ -1,11 +1,11 @@
 package pl.srslycpp.myWeb.Service;
 
 import pl.srslycpp.myWeb.Entity.Product;
-import pl.srslycpp.myWeb.commands.ProductForm;
+import pl.srslycpp.myWeb.commands.ProductFormCommand;
 
 import java.util.List;
 
-public interface ProductService  {
+public interface ProductService {
 
     List<Product> getAllProduct();
 
@@ -13,6 +13,6 @@ public interface ProductService  {
 
     void removeById(String id);
 
-    Product saveOrEditProduct(ProductForm productForm);
+    Product saveOrEditProduct(ProductFormCommand productForm);
 
 }

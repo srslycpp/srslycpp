@@ -1,15 +1,9 @@
-package pl.srslycpp.myWeb.Entity;
+package pl.srslycpp.myWeb.commands;
 
-
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Entity;
 import java.math.BigDecimal;
 
-@Entity
-public class Product {
+public class ProductCommand {
 
-    @Id
     private String id;
     private String description;
     private BigDecimal price;
@@ -43,7 +37,8 @@ public class Product {
         return imageUrl;
     }
 
-    public void setImageUrl(String someUrl) {
-        this.imageUrl = someUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
+

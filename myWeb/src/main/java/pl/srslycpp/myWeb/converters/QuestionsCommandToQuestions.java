@@ -19,16 +19,9 @@ public class QuestionsCommandToQuestions implements Converter<QuestionsCommand, 
         if (source == null) {
             return null;
         }
-
-
         final Questions questions = new Questions();
-
         questions.setId(source.getId());
-
-
         return questions;
-
-
     }
 
 
