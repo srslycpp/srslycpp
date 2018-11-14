@@ -1,7 +1,7 @@
 package pl.srslycpp.myWeb.Service;
 
 import pl.srslycpp.myWeb.Entity.Product;
-import pl.srslycpp.myWeb.commands.ProductFormCommand;
+import pl.srslycpp.myWeb.commands.ProductCommand;
 
 import java.util.List;
 
@@ -11,8 +11,10 @@ public interface ProductService {
 
     Product getById(String id);
 
+    Product saveOrUpdate(Product product);
+
     void removeById(String id);
 
-    Product saveOrEditProduct(ProductFormCommand productForm);
+    Product saveOrEditProduct(ProductCommand productForm);
 
 }

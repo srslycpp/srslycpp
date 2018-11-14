@@ -3,14 +3,14 @@ package pl.srslycpp.myWeb.converters;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import pl.srslycpp.myWeb.Entity.Product;
-import pl.srslycpp.myWeb.commands.ProductFormCommand;
+import pl.srslycpp.myWeb.commands.ProductCommand;
 
 @Component
-    public class ProductToProductForm implements Converter<Product, ProductFormCommand> {
+    public class ProductToProductCommad implements Converter<Product, ProductCommand> {
 
         @Override
-        public ProductFormCommand convert(Product product) {
-            ProductFormCommand productForm = new ProductFormCommand();
+        public ProductCommand convert(Product product) {
+            ProductCommand productForm = new ProductCommand();
             productForm.setId(product.getId());
             productForm.setDescription(product.getDescription());
             productForm.setPrice(product.getPrice());
