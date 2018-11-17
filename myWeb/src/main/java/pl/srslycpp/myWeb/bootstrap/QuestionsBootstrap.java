@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public class QuestionsBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    
+
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -29,7 +29,6 @@ public class QuestionsBootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     private List<Questions> getQuestions() {
-
 
         List<Questions> questions = new ArrayList<>(2);
 
