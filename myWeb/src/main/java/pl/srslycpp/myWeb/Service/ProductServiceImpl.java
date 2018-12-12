@@ -48,7 +48,6 @@ public class ProductServiceImpl implements ProductService{
     public Product saveOrEditProduct(ProductCommand productCommand) {
 
         Product saveProduct = saveOrUpdate(productCommandToProduct.convert(productCommand));
-
         System.out.println("Product's saved id= "+ saveProduct.getId());
         return saveProduct;
     }
