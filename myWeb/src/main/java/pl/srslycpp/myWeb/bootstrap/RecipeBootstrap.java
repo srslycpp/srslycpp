@@ -38,6 +38,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         System.out.println("some sout from RecipeBootstrap <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         recipeRepository.saveAll(getRecipes());
     }
+    
     private List<Recipe> getRecipes() {
 
         List<Recipe> recipes = new ArrayList<>(2);
