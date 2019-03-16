@@ -12,7 +12,6 @@ public class IndexRecipeController {
 
     private RecipeService recipeService;
 
-
     public IndexRecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
