@@ -9,7 +9,6 @@ import pl.srslycpp.myWeb.Service.RecipeService;
 @Slf4j
 @Controller
 public class IndexRecipeController {
-
     private RecipeService recipeService;
 
     public IndexRecipeController(RecipeService recipeService) {
